@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Now Designs — Done-for-you websites with a cherry on top</title>
+<meta name="description" content="A done-for-you web design studio. Fast, beautiful, conversion-first websites — designed, built, and launched for you. You get the cherry on top." />
+
+<!-- ===== FONTS ===== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600;1,9..144,900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* =================================================================
+   THE NOW DESIGNS — single-scroll site
+   Palette: powder blue · ink · cream · cherry accent
+   Type: Fraunces (chunky retro display) + Hanken Grotesk (body)
+   ================================================================= */
+
+:root{
+  --blue:#9FC2EA;        /* powder blue hero */
+  --blue-deep:#7FA9DC;   /* deeper blue */
+  --ink:#15140F;         /* near-black */
+  --cream:#EFEDE6;       /* alt section */
+  --paper:#F7F5EF;       /* lightest */
+  --cherry:#E1452E;      /* the cherry on top */
+  --cherry-deep:#C5391F;
+  --muted:#5C594F;
+  --line:rgba(21,20,15,.14);
+
+  --display:'Fraunces',Georgia,serif;
+  --body:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,sans-serif;
+
+  --maxw:1240px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{
+  font-family:var(--body);
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+section{position:relative;}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,56px);}
+
+/* ---- shared type ---- */
+.eyebrow{
+  font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;
+  font-weight:600;display:inline-flex;align-items:center;gap:10px;
+}
+.eyebrow::before{content:"";width:30px;height:1px;background:currentColor;opacity:.5;}
+.display{font-family:var(--display);font-weight:400;line-height:1.02;letter-spacing:-.015em;}
+.display em{font-style:italic;color:var(--cherry);font-weight:600;}
+.h-sec{font-family:var(--display);font-weight:400;line-height:1.04;letter-spacing:-.015em;
+  font-size:clamp(2.1rem,5vw,3.6rem);}
+.h-sec em{font-style:italic;color:var(--cherry);font-weight:600;}
+.lead{font-size:clamp(1.05rem,1.6vw,1.3rem);color:var(--muted);max-width:46ch;}
+
+/* ---- buttons ---- */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--body);font-weight:600;font-size:.98rem;
+  padding:15px 26px;border-radius:100px;cursor:pointer;border:1.5px solid transparent;
+  transition:transform .3s var(--ease),background .3s var(--ease),color .3s var(--ease),box-shadow .3s var(--ease);
+}
+.btn--cherry{background:var(--cherry);color:#fff;box-shadow:0 10px 30px -12px var(--cherry);}
+.btn--cherry:hover{background:var(--cherry-deep);transform:translateY(-2px);box-shadow:0 16px 40px -12px var(--cherry);}
+.btn--ink{background:var(--ink);color:var(--paper);}
+.btn--ink:hover{transform:translateY(-2px);}
+.btn--ghost{background:transparent;border-color:var(--ink);color:var(--ink);}
+.btn--ghost:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px);}
+.btn .arrow{transition:transform .3s var(--ease);}
+.btn:hover .arrow{transform:translate(4px,-1px);}
+
+/* =================================================================
+   NAV
+   ================================================================= */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px clamp(20px,5vw,56px);
+  transition:background .4s var(--ease),box-shadow .4s var(--ease),padding .4s var(--ease);
+}
+.nav.scrolled{background:rgba(247,245,239,.82);backdrop-filter:blur(14px);
+  box-shadow:0 1px 0 var(--line);padding:12px clamp(20px,5vw,56px);}
+.brand{font-family:var(--display);font-style:italic;font-weight:900;
+  font-size:1.25rem;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+.brand .dot{width:9px;height:9px;border-radius:50%;background:var(--cherry);display:inline-block;}
+.nav-links{display:flex;align-items:center;gap:30px;}
+.nav-links a{font-size:.92rem;font-weight:500;position:relative;}
+.nav-links a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1.5px;
+  background:var(--cherry);transition:width .3s var(--ease);}
+.nav-links a:not(.btn):hover::after{width:100%;}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px;}
+.nav-toggle span{width:24px;height:2px;background:var(--ink);transition:.3s var(--ease);}
+
+/* =================================================================
+   HERO
+   ================================================================= */
+.hero{
+  background:var(--blue);
+  padding:clamp(130px,16vh,180px) 0 clamp(60px,9vw,110px);
+  overflow:hidden;
+}
+.hero__inner{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,56px);}
+.hero .eyebrow{color:var(--ink);margin-bottom:26px;}
+.hero h1{font-size:clamp(2.9rem,9vw,7.2rem);margin-bottom:28px;max-width:15ch;}
+.hero .lead{color:rgba(21,20,15,.72);max-width:48ch;margin-bottom:36px;font-size:clamp(1.1rem,1.7vw,1.35rem);}
+.hero__cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center;}
+.hero__trust{margin-top:30px;font-size:.86rem;color:rgba(21,20,15,.6);
+  display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;}
+.hero__trust b{color:var(--ink);font-weight:600;}
+.hero__trust .sep{width:4px;height:4px;border-radius:50%;background:var(--cherry);}
+
+/* hero visual: framed card with floating cherry */
+.hero__visual{margin-top:clamp(46px,7vw,80px);position:relative;}
+.hero__frame{
+  position:relative;border-radius:8px;overflow:hidden;
+  aspect-ratio:16/7;border:1px solid rgba(21,20,15,.14);
+  background:
+    radial-gradient(120% 140% at 80% 10%, #e9e3d6 0%, #d8cdb8 45%, #b9ac92 100%);
+  display:flex;align-items:flex-end;padding:clamp(20px,3vw,40px);
+}
+.hero__frame::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(60% 80% at 30% 30%, rgba(255,255,255,.5), transparent 60%);
+}
+.hero__frame .blob{
+  position:absolute;width:34%;aspect-ratio:1;border-radius:50%;
+  top:50%;left:46%;transform:translate(-50%,-50%);
+  background:
+    repeating-radial-gradient(circle at 50% 50%, #cdbfa3 0 6px, #c2b395 6px 12px);
+  box-shadow:0 40px 70px -20px rgba(80,60,30,.5);
+}
+.hero__frame figcaption{position:relative;z-index:2;font-family:var(--display);font-style:italic;
+  font-size:clamp(1rem,1.5vw,1.25rem);color:#3a3325;}
+.cherry-float{
+  position:absolute;top:-26px;right:6%;z-index:3;width:clamp(64px,9vw,96px);
+  filter:drop-shadow(0 16px 24px rgba(180,40,20,.35));
+  animation:bob 5s var(--ease) infinite;
+}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-4deg);}50%{transform:translateY(-12px) rotate(3deg);}}
+
+/* =================================================================
+   MARQUEE
+   ================================================================= */
+.marquee{background:var(--ink);color:var(--blue);padding:22px 0;overflow:hidden;}
+.marquee__track{display:flex;width:max-content;animation:scroll 26s linear infinite;}
+.marquee:hover .marquee__track{animation-play-state:paused;}
+.marquee span{font-family:var(--display);font-style:italic;font-weight:600;
+  font-size:clamp(1.6rem,3.4vw,2.6rem);padding:0 26px;white-space:nowrap;
+  display:flex;align-items:center;gap:26px;}
+.marquee .pip{width:12px;height:12px;border-radius:50%;background:var(--cherry);flex:none;}
+@keyframes scroll{to{transform:translateX(-50%);}}
+
+/* =================================================================
+   SECTION shells
+   ================================================================= */
+.sec{padding:clamp(70px,11vw,140px) 0;}
+.sec--cream{background:var(--cream);}
+.sec--blue{background:var(--blue);}
+.sec-head{max-width:680px;margin-bottom:clamp(40px,5vw,64px);}
+.sec-head .eyebrow{color:var(--cherry);margin-bottom:18px;}
+.sec-head p{margin-top:18px;color:var(--muted);font-size:1.08rem;max-width:52ch;}
+
+/* =================================================================
+   SERVICES
+   ================================================================= */
+.svc-grid{display:grid;gap:clamp(14px,1.6vw,22px);grid-template-columns:repeat(auto-fit,minmax(250px,1fr));}
+.svc{
+  border:1px solid var(--line);border-radius:6px;padding:clamp(24px,2.4vw,34px);
+  background:var(--paper);display:flex;flex-direction:column;gap:14px;min-height:300px;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),background .4s var(--ease);
+}
+.svc:hover{transform:translateY(-6px);box-shadow:0 30px 60px -34px rgba(21,20,15,.5);}
+.svc__num{font-family:var(--display);font-style:italic;color:var(--cherry);font-size:1.1rem;}
+.svc__name{font-family:var(--display);font-size:clamp(1.5rem,2.2vw,1.95rem);line-height:1.05;}
+.svc__desc{color:var(--muted);font-size:.98rem;margin-top:auto;}
+.svc__tag{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);font-weight:600;opacity:.7;}
+
+/* =================================================================
+   WHY (differentiators)
+   ================================================================= */
+.why-quote{font-family:var(--display);font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.06;
+  letter-spacing:-.015em;max-width:18ch;margin-bottom:clamp(40px,5vw,70px);}
+.why-quote em{font-style:italic;color:var(--cherry);font-weight:600;}
+.why-grid{display:grid;gap:clamp(28px,3vw,48px);grid-template-columns:repeat(auto-fit,minmax(240px,1fr));}
+.why h3{font-family:var(--display);font-size:1.4rem;margin-bottom:10px;display:flex;align-items:baseline;gap:10px;}
+.why h3 .i{font-style:italic;color:var(--cherry);font-size:1rem;}
+.why p{color:var(--muted);font-size:.98rem;}
+.why .why-item{padding-top:22px;border-top:2px solid var(--ink);}
+
+/* =================================================================
+   PROCESS
+   ================================================================= */
+.steps{display:grid;gap:clamp(14px,1.6vw,20px);grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+.step{border-radius:6px;padding:clamp(22px,2.2vw,30px);background:rgba(255,255,255,.5);
+  border:1px solid rgba(21,20,15,.18);}
+.step__n{font-family:var(--display);font-style:italic;font-weight:900;font-size:2.6rem;color:var(--cherry);line-height:1;}
+.step h4{font-family:var(--display);font-size:1.35rem;margin:14px 0 8px;}
+.step p{color:rgba(21,20,15,.7);font-size:.94rem;}
+
+/* =================================================================
+   PROOF
+   ================================================================= */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:clamp(20px,2vw,30px);margin-bottom:clamp(48px,6vw,80px);}
+.stat__n{font-family:var(--display);font-weight:900;font-size:clamp(2.6rem,5vw,4rem);line-height:1;letter-spacing:-.02em;}
+.stat__n em{font-style:italic;color:var(--cherry);}
+.stat__l{margin-top:8px;color:var(--muted);font-size:.92rem;}
+.testi{max-width:880px;}
+.testi blockquote{font-family:var(--display);font-size:clamp(1.5rem,3.2vw,2.4rem);line-height:1.18;
+  letter-spacing:-.01em;}
+.testi blockquote::before{content:"“";color:var(--cherry);}
+.testi blockquote::after{content:"”";color:var(--cherry);}
+.testi cite{display:block;margin-top:20px;font-style:normal;font-weight:600;font-size:.95rem;}
+.testi cite span{color:var(--muted);font-weight:400;}
+
+/* =================================================================
+   PRICING
+   ================================================================= */
+.price-note{max-width:60ch;color:var(--muted);margin-bottom:clamp(36px,4vw,52px);font-size:1.05rem;}
+.price-note b{color:var(--ink);}
+.tiers{display:grid;gap:clamp(14px,1.6vw,20px);grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
+.tier{border:1px solid var(--line);border-radius:8px;padding:clamp(26px,2.6vw,38px);
+  background:var(--paper);display:flex;flex-direction:column;gap:8px;}
+.tier--feat{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.tier--feat .tier__price,.tier--feat .tier__name{color:var(--paper);}
+.tier--feat .tier__price em{color:var(--blue);}
+.tier__badge{align-self:flex-start;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  font-weight:700;color:#fff;background:var(--cherry);padding:5px 12px;border-radius:100px;margin-bottom:6px;}
+.tier__name{font-family:var(--display);font-size:1.6rem;}
+.tier__price{font-family:var(--display);font-weight:900;font-size:2.2rem;letter-spacing:-.02em;}
+.tier__price em{font-style:italic;font-weight:400;font-size:1rem;color:var(--cherry);}
+.tier__sub{color:var(--muted);font-size:.92rem;margin-bottom:8px;}
+.tier--feat .tier__sub{color:rgba(247,245,239,.7);}
+.tier ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin:10px 0 22px;}
+.tier li{font-size:.92rem;padding-left:22px;position:relative;}
+.tier li::before{content:"✓";position:absolute;left:0;color:var(--cherry);font-weight:700;}
+.tier .btn{margin-top:auto;justify-content:center;}
+.tier--feat .btn--ghost{border-color:var(--paper);color:var(--paper);}
+.tier--feat .btn--ghost:hover{background:var(--paper);color:var(--ink);}
+
+/* =================================================================
+   CONTACT
+   ================================================================= */
+.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(36px,5vw,72px);align-items:start;}
+.contact h2{margin-bottom:18px;}
+.contact .lead{margin-bottom:28px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.field{margin-bottom:14px;}
+.field label{display:block;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:600;margin-bottom:7px;color:var(--ink);}
+.field input,.field textarea{
+  width:100%;font-family:var(--body);font-size:1rem;color:var(--ink);
+  padding:14px 16px;border:1.5px solid var(--line);border-radius:8px;background:rgba(255,255,255,.6);
+  transition:border-color .3s var(--ease),background .3s var(--ease);
+}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--cherry);background:#fff;}
+.field textarea{resize:vertical;min-height:130px;}
+.contact__aside{background:var(--ink);color:var(--paper);border-radius:10px;padding:clamp(28px,3vw,40px);
+  position:sticky;top:100px;}
+.contact__aside h3{font-family:var(--display);font-size:1.7rem;margin-bottom:14px;}
+.contact__aside p{color:rgba(247,245,239,.72);font-size:.96rem;margin-bottom:22px;}
+.contact__aside a.mail{font-family:var(--display);font-style:italic;color:var(--blue);font-size:1.25rem;
+  border-bottom:1px solid transparent;transition:border-color .3s;}
+.contact__aside a.mail:hover{border-color:var(--blue);}
+.contact__aside .pts{margin-top:26px;display:flex;flex-direction:column;gap:12px;}
+.contact__aside .pts div{font-size:.92rem;display:flex;gap:10px;align-items:center;color:rgba(247,245,239,.85);}
+.contact__aside .pts .c{color:var(--cherry);font-weight:700;}
+
+/* =================================================================
+   FOOTER
+   ================================================================= */
+.footer{background:var(--ink);color:var(--paper);padding:clamp(56px,7vw,90px) 0 40px;}
+.footer__top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:30px;
+  align-items:flex-start;padding-bottom:40px;border-bottom:1px solid rgba(247,245,239,.14);}
+.footer .brand{color:var(--paper);font-size:1.6rem;}
+.footer__big{font-family:var(--display);font-style:italic;font-size:clamp(2rem,5vw,3.4rem);max-width:14ch;}
+.footer__big em{color:var(--cherry);}
+.footer__links{display:flex;gap:26px;flex-wrap:wrap;font-size:.95rem;}
+.footer__links a{color:rgba(247,245,239,.75);}
+.footer__links a:hover{color:var(--blue);}
+.footer__bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;
+  margin-top:30px;font-size:.84rem;color:rgba(247,245,239,.5);}
+
+/* =================================================================
+   SCROLL REVEAL + MOTION
+   ================================================================= */
+[data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
+[data-reveal].in{opacity:1;transform:none;}
+[data-reveal][data-d="1"]{transition-delay:.08s;}
+[data-reveal][data-d="2"]{transition-delay:.16s;}
+[data-reveal][data-d="3"]{transition-delay:.24s;}
+[data-reveal][data-d="4"]{transition-delay:.32s;}
+
+/* =================================================================
+   RESPONSIVE
+   ================================================================= */
+@media (max-width:860px){
+  .contact-grid{grid-template-columns:1fr;}
+  .contact__aside{position:static;}
+}
+@media (max-width:720px){
+  .nav-links{position:fixed;inset:0 0 0 auto;width:min(78vw,320px);background:var(--paper);
+    flex-direction:column;align-items:flex-start;justify-content:center;gap:26px;
+    padding:40px;transform:translateX(100%);transition:transform .4s var(--ease);
+    box-shadow:-20px 0 60px -20px rgba(0,0,0,.3);font-size:1.2rem;}
+  .nav-links.open{transform:none;}
+  .nav-links a{font-size:1.25rem;}
+  .nav-toggle{display:flex;z-index:101;}
+  .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-toggle.open span:nth-child(2){opacity:0;}
+  .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .form-row{grid-template-columns:1fr;}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto;}
+  [data-reveal]{opacity:1;transform:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<nav class="nav" id="nav">
+  <a href="#top" class="brand">The Now Designs <span class="dot"></span></a>
+  <div class="nav-links" id="navlinks">
+    <a href="#services">Services</a>
+    <a href="#why">Why us</a>
+    <a href="#process">Process</a>
+    <a href="#work">Work</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact" class="btn btn--ink">Book now</a>
+  </div>
+  <button class="nav-toggle" id="toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="hero__inner">
+    <span class="eyebrow" data-reveal>Done-for-you web design studio</span>
+    <h1 class="display" data-reveal data-d="1">Websites that do the work <em>for&nbsp;you.</em></h1>
+    <p class="lead" data-reveal data-d="2">We design, build, and launch fast, beautiful, conversion-first websites — start to finish, all done for you. You get the cherry on top. Your competitors get nervous.</p>
+    <div class="hero__cta" data-reveal data-d="3">
+      <a href="#contact" class="btn btn--cherry">Book a free call <span class="arrow">→</span></a>
+      <a href="#work" class="btn btn--ghost">See the work</a>
+    </div>
+    <div class="hero__trust" data-reveal data-d="4">
+      <span><b>Hand-built</b>, not templated</span><span class="sep"></span>
+      <span><b>Sub-second</b> load times</span><span class="sep"></span>
+      <span>You <b>own everything</b></span>
+    </div>
+
+    <figure class="hero__visual" data-reveal data-d="4">
+      <!-- Swap this gradient block for your real hero image: replace the .hero__frame background with url('your-image.jpg') -->
+      <div class="hero__frame">
+        <div class="blob"></div>
+        <figcaption>Fairly normal designs — with a cherry on top.</figcaption>
+      </div>
+      <svg class="cherry-float" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M50 14 C58 4 76 6 82 16" fill="none" stroke="#2c5e23" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="38" cy="68" r="22" fill="#E1452E"/>
+        <circle cx="70" cy="62" r="20" fill="#C5391F"/>
+        <circle cx="31" cy="60" r="6" fill="#ff8b76"/>
+      </svg>
+    </figure>
+  </div>
+</header>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>All done for you <i class="pip"></i> All done for you <i class="pip"></i> All done for you <i class="pip"></i></span>
+    <span>All done for you <i class="pip"></i> All done for you <i class="pip"></i> All done for you <i class="pip"></i></span>
+  </div>
+</div>
+
+<!-- ================= SERVICES ================= -->
+<section class="sec" id="services">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow">What we do</span>
+      <h2 class="h-sec">Everything you need. <em>Nothing you don't.</em></h2>
+      <p>Four ways we take the website off your plate — and turn it into the hardest-working salesperson you've got.</p>
+    </div>
+    <div class="svc-grid">
+      <article class="svc" data-reveal data-d="1">
+        <span class="svc__num">01</span>
+        <h3 class="svc__name">Web Design</h3>
+        <span class="svc__tag">Design + Build</span>
+        <p class="svc__desc">Editorial, conversion-minded sites built by hand. Beautiful on every screen, fast as hell, with SEO baked in from line one. No page-builder bloat.</p>
+      </article>
+      <article class="svc" data-reveal data-d="2">
+        <span class="svc__num">02</span>
+        <h3 class="svc__name">Brand Identity</h3>
+        <span class="svc__tag">Logo + System</span>
+        <p class="svc__desc">Marks, palettes, and type systems with a point of view — identities that feel inevitable, not decorated. So your site looks like a brand, not a theme.</p>
+      </article>
+      <article class="svc" data-reveal data-d="3">
+        <span class="svc__num">03</span>
+        <h3 class="svc__name">Development</h3>
+        <span class="svc__tag">Custom Code</span>
+        <p class="svc__desc">Custom code where templates stop. Animations, integrations, the works — fast, accessible, and yours to keep. Squarespace optional, never required.</p>
+      </article>
+      <article class="svc" data-reveal data-d="4">
+        <span class="svc__num">04</span>
+        <h3 class="svc__name">Growth</h3>
+        <span class="svc__tag">SEO + Marketing</span>
+        <p class="svc__desc">Local SEO that actually ranks, content built on search data, and monthly reports you can read in 60 seconds. We watch your numbers climb so you don't have to.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY ================= -->
+<section class="sec sec--blue why" id="why">
+  <div class="wrap">
+    <p class="why-quote" data-reveal>Few clients. Full attention. <em>Real results.</em></p>
+    <div class="why-grid">
+      <div class="why-item" data-reveal data-d="1">
+        <h3><span class="i">01</span> You text the designer</h3>
+        <p>No ticket system. No "account manager" who's never touched a line of code. You message the person actually building your site — and get an answer the same day.</p>
+      </div>
+      <div class="why-item" data-reveal data-d="2">
+        <h3><span class="i">02</span> Built to load instantly</h3>
+        <p>Zero bloat. Every kilobyte justified. Your site loads before they blink — Google notices, and your visitors notice more. 100/100 Lighthouse is the floor, not the goal.</p>
+      </div>
+      <div class="why-item" data-reveal data-d="3">
+        <h3><span class="i">03</span> You own everything</h3>
+        <p>Your code, your domain, your data. No vendor lock-in, no hostage situations. If we're not earning it, you walk with everything. That's how it should work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section class="sec sec--cream" id="process">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow">How it works</span>
+      <h2 class="h-sec">Live in <em>weeks</em>, not months.</h2>
+      <p>Four steps. One direct line to the person building it. No approval chains, no waiting rooms.</p>
+    </div>
+    <div class="steps">
+      <div class="step" data-reveal data-d="1"><div class="step__n">01</div><h4>The Call</h4><p>A free, no-pitch conversation. You tell us what you're building; we tell you exactly what we'd do — and what it costs.</p></div>
+      <div class="step" data-reveal data-d="2"><div class="step__n">02</div><h4>The Design</h4><p>We design the whole thing in your brand. You see real screens, not mood boards — and shape it with us before a single line ships.</p></div>
+      <div class="step" data-reveal data-d="3"><div class="step__n">03</div><h4>The Build</h4><p>We hand-code it: fast, responsive, SEO-ready. Weekly updates, unlimited revisions, no surprises.</p></div>
+      <div class="step" data-reveal data-d="4"><div class="step__n">04</div><h4>The Launch</h4><p>We ship it locked-down and lightning quick — then hand you the keys. 4–6 weeks, start to live. Cherry on top included.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROOF / WORK ================= -->
+<section class="sec" id="work">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow">The receipts</span>
+      <h2 class="h-sec">Pretty <em>and</em> proven.</h2>
+    </div>
+    <div class="stats">
+      <div data-reveal data-d="1"><div class="stat__n">100<em>/100</em></div><div class="stat__l">Lighthouse performance, standard</div></div>
+      <div data-reveal data-d="2"><div class="stat__n">&lt;1<em>s</em></div><div class="stat__l">Average load time</div></div>
+      <div data-reveal data-d="3"><div class="stat__n">50<em>+</em></div><div class="stat__l">Sites designed &amp; shipped</div></div>
+      <div data-reveal data-d="4"><div class="stat__n">6</div><div class="stat__l">Clients at a time — on purpose</div></div>
+    </div>
+    <div class="testi" data-reveal>
+      <blockquote>They handed us a site that loads instantly, looks like nothing else in our industry, and books calls while we sleep. All done for us — exactly as promised.</blockquote>
+      <cite>A founder we work with <span>— Pacific Northwest</span></cite>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRICING ================= -->
+<section class="sec sec--cream" id="pricing">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow">What it costs</span>
+      <h2 class="h-sec">Let's talk about <em>real</em> numbers.</h2>
+    </div>
+    <p class="price-note" data-reveal><b>Most studios won't publish prices. That's a tell.</b> 60% of a typical agency bill is overhead — sales teams, project managers, office rent. You're paying for the operation, not the craft. We run six clients at a time, with no middlemen, so you pay for the work and nothing else. Financing available on every build.</p>
+    <div class="tiers">
+      <div class="tier" data-reveal data-d="1">
+        <div class="tier__name">The Site</div>
+        <div class="tier__price">$4,500 <em>one-time</em></div>
+        <div class="tier__sub">A site you own forever. No strings.</div>
+        <ul>
+          <li>Up to 8 pages, hand-coded</li>
+          <li>Responsive on every screen</li>
+          <li>SEO architecture + security stack</li>
+          <li>Sub-second load times</li>
+          <li>30-day launch · 60 days support</li>
+        </ul>
+        <a href="#contact" class="btn btn--ghost">Start here</a>
+      </div>
+      <div class="tier tier--feat" data-reveal data-d="2">
+        <span class="tier__badge">Most popular</span>
+        <div class="tier__name">The Whole Thing</div>
+        <div class="tier__price">$2,500 <em>/mo</em></div>
+        <div class="tier__sub">Website + marketing + optimization. One team, one bill.</div>
+        <ul>
+          <li>Everything in The Site, included</li>
+          <li>Local SEO + monthly content</li>
+          <li>Performance monitoring</li>
+          <li>Unlimited minor updates</li>
+          <li>Priority direct access</li>
+        </ul>
+        <a href="#contact" class="btn btn--ghost">Book a call</a>
+      </div>
+      <div class="tier" data-reveal data-d="3">
+        <div class="tier__name">The Marketing</div>
+        <div class="tier__price">$1,500 <em>/mo</em></div>
+        <div class="tier__sub">For a site that's already worth marketing.</div>
+        <ul>
+          <li>Local SEO that ranks</li>
+          <li>Content strategy from real data</li>
+          <li>Google Business optimization</li>
+          <li>Monthly reports in plain English</li>
+          <li>Month-to-month, no lock-in</li>
+        </ul>
+        <a href="#contact" class="btn btn--ghost">Let's talk</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="sec sec--blue contact" id="contact">
+  <div class="wrap contact-grid">
+    <div data-reveal>
+      <span class="eyebrow" style="color:var(--ink)">Let's team up</span>
+      <h2 class="h-sec" style="margin-top:16px">Tell us what <em>you're building.</em></h2>
+      <p class="lead" style="color:rgba(21,20,15,.72)">We'll tell you exactly what we'd do — and what it'd cost — free. No pitch, no pressure.</p>
+      <!-- Wire this to your form handler: set action to your Squarespace form, Formspree, or backend.
+           As-is, it falls back to opening the visitor's email client. -->
+      <form action="mailto:hello@thenowdesigns.com" method="post" enctype="text/plain">
+        <div class="form-row">
+          <div class="field"><label>First name</label><input type="text" name="first" required></div>
+          <div class="field"><label>Last name</label><input type="text" name="last" required></div>
+        </div>
+        <div class="field"><label>Email</label><input type="email" name="email" required></div>
+        <div class="field"><label>What do you need?</label><input type="text" name="subject" placeholder="New site, rebrand, marketing…" required></div>
+        <div class="field"><label>Tell us more</label><textarea name="message" placeholder="A sentence or two about your project."></textarea></div>
+        <button type="submit" class="btn btn--cherry">Send it <span class="arrow">→</span></button>
+      </form>
+    </div>
+    <aside class="contact__aside" data-reveal data-d="2">
+      <h3>Prefer to just email?</h3>
+      <p>Drop us a line and we'll get back to you the same day. We actually read these.</p>
+      <a class="mail" href="mailto:hello@thenowdesigns.com">hello@thenowdesigns.com</a>
+      <div class="pts">
+        <div><span class="c">✓</span> Free, no-pitch first call</div>
+        <div><span class="c">✓</span> Same-day responses</div>
+        <div><span class="c">✓</span> 4–6 week launches</div>
+        <div><span class="c">✓</span> You own everything, always</div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <a href="#top" class="brand">The Now Designs <span class="dot"></span></a>
+        <p class="footer__big" style="margin-top:24px">Your website, <em>all done for you.</em></p>
+      </div>
+      <div class="footer__links">
+        <a href="#services">Services</a>
+        <a href="#why">Why us</a>
+        <a href="#process">Process</a>
+        <a href="#work">Work</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Book now</a>
+      </div>
+    </div>
+    <div class="footer__bot">
+      <span>© <span id="yr"></span> The Now Designs. Fairly normal designs, with a cherry on top.</span>
+      <a href="mailto:hello@thenowdesigns.com">hello@thenowdesigns.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* nav scroll state */
+var nav=document.getElementById('nav');
+addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>30);});
+/* mobile menu */
+var t=document.getElementById('toggle'),l=document.getElementById('navlinks');
+t.addEventListener('click',function(){t.classList.toggle('open');l.classList.toggle('open');});
+l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){t.classList.remove('open');l.classList.remove('open');});});
+/* scroll reveal */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14});
+document.querySelectorAll('[data-reveal]').forEach(function(el){io.observe(el);});
+/* year */
+document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
