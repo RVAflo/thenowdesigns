@@ -48,7 +48,7 @@ section[id]{scroll-margin-top:90px;}
 .nav.scrolled{background:rgba(247,245,239,.85);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);padding:12px clamp(20px,5vw,56px);}
 .brand{font-family:var(--display);font-style:italic;font-weight:900;font-size:1.25rem;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
 .brand .dot{width:22px;height:22px;background:url('/cherry.svg') center/contain no-repeat;display:inline-block;vertical-align:-3px;}
-.cherry-o{display:inline-block;width:.96em;height:.96em;background:url('/cherry-single.svg') center/contain no-repeat;vertical-align:-.2em;margin:0 -.1em;}
+.cherry-o{display:inline-block;width:.96em;height:.96em;background:url('/cherry-single.svg') center/contain no-repeat;vertical-align:-.2em;margin:0 -.2em;}
 .nav-links{display:flex;align-items:center;gap:30px;}
 .nav-links a{font-size:.92rem;font-weight:500;position:relative;}
 .nav-links a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1.5px;background:var(--cherry);transition:width .3s var(--ease);}
