@@ -116,6 +116,7 @@ section{position:relative;}
 .svc-detail li{padding-left:24px;position:relative;font-size:.98rem;}
 .svc-detail li::before{content:"\2713";position:absolute;left:0;color:var(--cherry);font-weight:700;}
 .svc-detail__media{aspect-ratio:4/3;border-radius:10px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;background:radial-gradient(120% 130% at 75% 15%, #e9e3d6, #cdbfa3 70%, #b9ac92);position:relative;overflow:hidden;}
+.svc-detail__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 .svc-detail__media span{font-family:var(--display);font-style:italic;font-weight:900;font-size:clamp(3rem,7vw,5.5rem);color:rgba(21,20,15,.16);}
 .svc-detail__media .tag{position:absolute;bottom:18px;left:20px;font-family:var(--display);font-style:italic;color:#3a3325;font-size:1.05rem;}
 
