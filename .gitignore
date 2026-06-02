@@ -1,0 +1,8 @@
+.DS_Store
+*.txt
+*.mp4
+Gemini_Generated_Image_*
+*-squarespace.html
+content-only.html
+code-block.html
+skills-flip.html
