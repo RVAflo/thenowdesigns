@@ -50,7 +50,7 @@
     if (!localStorage.getItem('tnd-cookie-choice')) {
       var b = document.createElement('div');
       b.className = 'cookie-banner';
-      b.innerHTML = '<p>We use only essential cookies to make this site work, plus minimal third-party services (checkout &amp; fonts). See our <a href="cookies.html">Cookie Policy</a>.</p><div class="cookie-actions"><button class="decline" type="button">Decline</button><button class="accept" type="button">Accept</button></div>';
+      b.innerHTML = '<p>We use only essential cookies to make this site work, plus minimal third-party services (checkout &amp; fonts). See our <a href="/cookies/">Cookie Policy</a>.</p><div class="cookie-actions"><button class="decline" type="button">Decline</button><button class="accept" type="button">Accept</button></div>';
       document.body.appendChild(b);
       requestAnimationFrame(function(){ b.classList.add('show'); });
       var close = function(choice){ try { localStorage.setItem('tnd-cookie-choice', choice); } catch(e){} b.classList.remove('show'); setTimeout(function(){ b.remove(); }, 500); };
