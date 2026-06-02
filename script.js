@@ -44,4 +44,18 @@
       });
     });
   }
+
+  // cookie consent banner (shows once, choice stored locally)
+  try {
+    if (!localStorage.getItem('tnd-cookie-choice')) {
+      var b = document.createElement('div');
+      b.className = 'cookie-banner';
+      b.innerHTML = '<p>We use only essential cookies to make this site work, plus minimal third-party services (checkout &amp; fonts). See our <a href="cookies.html">Cookie Policy</a>.</p><div class="cookie-actions"><button class="decline" type="button">Decline</button><button class="accept" type="button">Accept</button></div>';
+      document.body.appendChild(b);
+      requestAnimationFrame(function(){ b.classList.add('show'); });
+      var close = function(choice){ try { localStorage.setItem('tnd-cookie-choice', choice); } catch(e){} b.classList.remove('show'); setTimeout(function(){ b.remove(); }, 500); };
+      b.querySelector('.accept').addEventListener('click', function(){ close('accepted'); });
+      b.querySelector('.decline').addEventListener('click', function(){ close('declined'); });
+    }
+  } catch(e){}
 })();
