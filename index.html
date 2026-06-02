@@ -323,6 +323,32 @@ section{position:relative;}
   .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
   .form-row{grid-template-columns:1fr;}
 }
+@media (max-width:640px){
+  .wrap,.hero__inner{padding-left:18px;padding-right:18px;}
+  .hero{padding:88px 0 60px;}
+  .hero h1{font-size:clamp(2.3rem,10.5vw,3.1rem);max-width:100%;margin-bottom:20px;}
+  .hero .lead{font-size:1.05rem;margin-bottom:26px;}
+  .hero__trust{font-size:.8rem;gap:6px 12px;}
+  .hero__cta{width:100%;}
+  .hero__cta .btn,.tier .btn{width:100%;justify-content:center;}
+  .hero__visual{margin-top:38px;}
+  .hero__frame{aspect-ratio:4/3;}
+  .cherry-float{width:56px;top:-18px;right:4%;}
+  .sec{padding:60px 0;}
+  .sec-head{margin-bottom:30px;}
+  .h-sec{font-size:clamp(1.9rem,8vw,2.6rem);}
+  .sec-head p{font-size:1rem;}
+  .why-quote{font-size:clamp(1.8rem,8.5vw,2.6rem);margin-bottom:34px;}
+  .svc{min-height:0;padding:24px;}
+  .marquee{padding:18px 0;}
+  .marquee span{font-size:1.7rem;gap:18px;}
+  .stats{grid-template-columns:1fr 1fr;gap:26px 16px;}
+  .stat__n{font-size:clamp(2.3rem,11vw,3rem);}
+  .testi blockquote{font-size:1.45rem;}
+  .tier{padding:26px;}
+  .contact__aside{padding:26px;}
+  .footer__big{font-size:clamp(1.7rem,8vw,2.4rem);}
+}
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;scroll-behavior:auto;}
   [data-reveal]{opacity:1;transform:none;}
