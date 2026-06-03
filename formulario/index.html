@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Now Designs — Formulario para tu sitio web</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600;1,9..144,900&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15140F; --muted:#5C594F; --line:#e3ddd1; --bg:#F7F5EF;
+    --cherry:#E1452E; --cherry-deep:#C5391F; --cherry-soft:#fbe7e2;
+    --cream:#EFEDE6; --blue:#9FC2EA; --ok:#1f6b2e; --card:#ffffff;
+    --display:'Fraunces',Georgia,serif; --body:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--body);
+    color:var(--ink);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:32px 20px 80px}
+  header.masthead{background:var(--ink);
+    color:var(--cream);border-radius:var(--radius);padding:34px 32px;margin-bottom:26px;
+    box-shadow:0 16px 40px -18px rgba(21,20,15,.5);position:relative;overflow:hidden}
+  header.masthead::after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;
+    background:radial-gradient(circle at 30% 30%,var(--cherry),var(--cherry-deep));border-radius:50%;opacity:.18}
+  header.masthead .logo{display:flex;align-items:center;gap:9px;font-weight:800;letter-spacing:.06em;font-size:13px;text-transform:uppercase;opacity:.95}
+  header.masthead .logo svg{width:26px;height:26px}
+  header.masthead h1{margin:12px 0 8px;font-family:var(--display);font-weight:600;font-size:34px;letter-spacing:-.5px;font-style:italic}
+  header.masthead h1 em{color:var(--cherry);font-style:italic}
+  header.masthead p{margin:0;opacity:.86;max-width:62ch;font-size:15px}
+  .meta{display:flex;gap:24px;flex-wrap:wrap;margin-top:18px;font-size:13px;opacity:.9;align-items:center}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px 26px;margin-bottom:18px;box-shadow:0 1px 2px rgba(21,20,15,.04)}
+  .card h2{font-family:var(--display);font-style:italic;font-size:22px;color:var(--ink);margin:0 0 4px;letter-spacing:-.3px}
+  .card .sub{color:var(--muted);font-size:13.5px;margin:0 0 18px}
+  .step{display:inline-block;background:var(--cherry-soft);color:var(--cherry-deep);font-weight:800;
+    font-size:11px;letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:3px 11px;margin-bottom:10px}
+  label{display:block;font-weight:600;font-size:14px;margin:14px 0 6px}
+  label .opt{font-weight:400;color:var(--muted)}
+  .hint{font-size:12.5px;color:var(--muted);margin:-2px 0 8px}
+  input[type=text],input[type=email],input[type=tel],input[type=url],input[type=number],input[type=date],select,textarea{
+    width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:10px;font-size:14px;
+    font-family:inherit;color:var(--ink);background:#fff;transition:border .15s,box-shadow .15s}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--cherry);box-shadow:0 0 0 3px var(--cherry-soft)}
+  textarea{min-height:90px;resize:vertical}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+  @media(max-width:620px){.grid2,.grid3{grid-template-columns:1fr}}
+  .check{display:flex;align-items:flex-start;gap:9px;margin:7px 0;font-weight:400;font-size:14px}
+  .check input{margin-top:3px;width:16px;height:16px;accent-color:var(--cherry)}
+  fieldset{border:none;padding:0;margin:0}
+  .pill-group{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+  @media(max-width:620px){.pill-group{grid-template-columns:1fr}}
+  .pill{border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer;transition:.15s;background:#fff;display:block}
+  .pill:hover{border-color:var(--cherry)}
+  .pill:has(input:checked){border-color:var(--cherry);background:var(--cherry-soft)}
+  .pill input{margin-right:8px;accent-color:var(--cherry)}
+  .pill b{display:block;font-size:14px}
+  .pill span{font-size:12.5px;color:var(--muted)}
+  .palettes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:6px 0 4px}
+  @media(max-width:620px){.palettes{grid-template-columns:1fr}}
+  .pal{border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;transition:.15s;background:#fff;display:flex;align-items:center;gap:12px}
+  .pal:hover{border-color:var(--cherry)}
+  .pal:has(input:checked){border-color:var(--cherry);background:var(--cherry-soft)}
+  .pal input{accent-color:var(--cherry)}
+  .pal .dots{display:flex;gap:0}
+  .pal .dots i{width:20px;height:20px;border-radius:50%;display:inline-block;margin-left:-6px;border:2px solid #fff;box-shadow:0 1px 2px rgba(0,0,0,.15)}
+  .pal .dots i:first-child{margin-left:0}
+  .pal .pname{font-weight:600;font-size:13.5px}
+  .pal .pdesc{font-size:12px;color:var(--muted)}
+  .color-pickers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+  @media(max-width:620px){.color-pickers{grid-template-columns:1fr 1fr 1fr}}
+  .cp{display:flex;flex-direction:column;align-items:center;gap:6px}
+  .cp label{margin:0;font-size:12.5px;font-weight:600}
+  .cp input[type=color]{-webkit-appearance:none;appearance:none;width:100%;height:48px;border:1.5px solid var(--line);border-radius:10px;padding:0;cursor:pointer;background:#fff}
+  .cp input[type=color]::-webkit-color-swatch-wrapper{padding:4px}
+  .cp input[type=color]::-webkit-color-swatch{border:none;border-radius:6px}
+  .cp .hex{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+  .dropzone{border:2px dashed var(--line);border-radius:12px;padding:26px 18px;text-align:center;
+    cursor:pointer;transition:.15s;background:var(--cream);color:var(--muted)}
+  .dropzone:hover,.dropzone.drag{border-color:var(--cherry);background:var(--cherry-soft);color:var(--cherry-deep)}
+  .dropzone strong{display:block;color:var(--ink);font-size:15px;margin-bottom:3px}
+  .dropzone .emoji{font-size:26px;display:block;margin-bottom:6px}
+  .previews{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px;margin-top:14px}
+  .thumb{position:relative;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;aspect-ratio:1;display:flex;align-items:center;justify-content:center}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .thumb .fname{position:absolute;inset:auto 0 0 0;background:rgba(21,20,15,.78);color:#fff;font-size:10px;padding:3px 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .thumb .doc{font-size:11px;color:var(--muted);padding:6px;text-align:center;word-break:break-all}
+  .thumb .x{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;background:rgba(21,20,15,.82);color:#fff;border:none;cursor:pointer;font-size:13px;line-height:1;display:flex;align-items:center;justify-content:center}
+  .thumb .x:hover{background:var(--cherry)}
+  .tier{border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column}
+  .actions{position:sticky;bottom:0;background:rgba(247,245,239,.92);backdrop-filter:blur(6px);
+    border-top:1px solid var(--line);padding:16px 0;margin-top:8px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  button{font-family:inherit;font-size:15px;font-weight:700;border:none;border-radius:10px;
+    padding:13px 22px;cursor:pointer;transition:.15s}
+  .btn-primary{background:var(--cherry);color:#fff;box-shadow:0 10px 26px -10px var(--cherry)}
+  .btn-primary:hover{background:var(--cherry-deep);transform:translateY(-1px)}
+  .btn-ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--cherry);color:var(--cherry-deep)}
+  .note{font-size:12px;color:var(--muted);margin:0;flex:1 1 240px}
+  footer{text-align:center;color:var(--muted);font-size:12.5px;margin-top:30px}
+  footer a{color:var(--cherry-deep)}
+  .req{color:var(--cherry)}
+  .lang{font-size:12.5px}
+  .lang a{color:var(--cream);opacity:.8;text-decoration:underline}
+  @media print{
+    body{background:#fff}.actions,.dropzone,.thumb .x{display:none}
+    header.masthead{box-shadow:none;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .card{box-shadow:none;break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="logo">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M15 9c3-3 9-2 11 1" fill="none" stroke="#7ec46f" stroke-width="2.4" stroke-linecap="round"/><circle cx="11" cy="22" r="6.5" fill="#E1452E"/><circle cx="22" cy="20" r="6" fill="#C5391F"/><circle cx="8.6" cy="19.6" r="1.7" fill="#ff9b88"/></svg>
+      The Now Designs
+    </div>
+    <h1>Tu sitio web — <em>cuéntanos de tu negocio</em></h1>
+    <p>Entre más detalles nos des aquí, más exacto será tu presupuesto — y más rápido lo construimos. No hay respuestas incorrectas; si no estás segura, escribe "no sé" y nosotros te guiamos. Toma unos 15–20 minutos. Puedes responder en español.</p>
+    <div class="meta">
+      <span><strong>Fecha:</strong> <input type="date" id="f_date" style="width:auto;padding:4px 8px;border-radius:6px;border:none;color:#15140F"></span>
+      <span>Los campos con <span class="req">*</span> son obligatorios</span>
+      <span class="lang"><a href="/client-intake-form.html">English version →</a></span>
+    </div>
+  </header>
+
+  <form id="intake">
+
+  <!-- 1 -->
+  <div class="card">
+    <span class="step">Paso 1</span>
+    <h2>Contacto y negocio</h2>
+    <p class="sub">Con quién vamos a trabajar y a dónde enviarte las cosas.</p>
+    <div class="grid2">
+      <div><label>Tu nombre completo <span class="req">*</span></label><input type="text" name="Nombre completo" required></div>
+      <div><label>Tu cargo / puesto <span class="opt">(opcional)</span></label><input type="text" name="Cargo" placeholder="Ej. Dueña, Estilista"></div>
+      <div><label>Nombre del negocio <span class="req">*</span></label><input type="text" name="Nombre del negocio" required></div>
+      <div><label>Teléfono del negocio <span class="req">*</span></label><input type="tel" name="Telefono" required></div>
+      <div><label>Correo electrónico <span class="req">*</span></label><input type="email" name="Email" required></div>
+      <div><label>Mejor forma / hora para contactarte</label><input type="text" name="Mejor forma de contacto" placeholder="Ej. WhatsApp por la tarde"></div>
+      <div><label>Dirección del negocio</label><input type="text" name="Direccion" placeholder="Calle, ciudad"></div>
+      <div><label>Zonas / ciudades que atiendes</label><input type="text" name="Zona de servicio"></div>
+    </div>
+    <label>¿Qué hace tu negocio, en una o dos frases? <span class="req">*</span></label>
+    <textarea name="Que hace el negocio" required placeholder="Ej. Salón de belleza: corte de cabello, barbería, uñas y belleza para toda la familia."></textarea>
+    <label>¿Cuánto tiempo llevas en el negocio? <span class="opt">(opcional)</span></label>
+    <input type="text" name="Anos en el negocio">
+  </div>
+
+  <!-- 2 -->
+  <div class="card">
+    <span class="step">Paso 2</span>
+    <h2>Metas del proyecto</h2>
+    <p class="sub">Cómo se ve el éxito para ti. Esto guía cada decisión que tomamos.</p>
+    <label>¿Por qué quieres hacer (o renovar) tu sitio web ahora? <span class="req">*</span></label>
+    <textarea name="Por que ahora" required></textarea>
+    <label>¿Cuáles son las 3 cosas más importantes que quieres que logre el sitio? <span class="req">*</span></label>
+    <p class="hint">Ej. recibir llamadas, tomar citas, verse profesional, conseguir clientes nuevos.</p>
+    <input type="text" name="Meta 1" placeholder="Meta 1" style="margin-bottom:8px">
+    <input type="text" name="Meta 2" placeholder="Meta 2" style="margin-bottom:8px">
+    <input type="text" name="Meta 3" placeholder="Meta 3">
+    <label>¿Cuál es la acción más importante que debe hacer una persona al entrar?</label>
+    <p class="hint">Esto se convierte en el botón principal de todo el sitio.</p>
+    <input type="text" name="Accion principal" placeholder="Ej. Llamar, Reservar cita, Ver servicios">
+    <label>¿Cómo sabrás que el sitio está funcionando? <span class="opt">(opcional)</span></label>
+    <input type="text" name="Como medir exito" placeholder="Ej. 10 clientes nuevos al mes, más citas, menos llamadas con dudas">
+  </div>
+
+  <!-- 3 -->
+  <div class="card">
+    <span class="step">Paso 3</span>
+    <h2>Tus clientes</h2>
+    <p class="sub">Para quién es realmente el sitio.</p>
+    <label>Describe a tu cliente ideal <span class="req">*</span></label>
+    <textarea name="Cliente ideal" required placeholder="Edad, zona donde vive, qué le importa, qué problema quiere resolver"></textarea>
+    <div class="grid2">
+      <div><label>¿Más o menos cuántos te buscan desde el celular?</label>
+        <select name="Uso de celular"><option value="">Selecciona…</option><option>Casi todos desde el celular</option><option>Mitad y mitad</option><option>Casi todos desde computadora</option><option>No estoy segura</option></select></div>
+      <div><label>¿Necesitas el sitio en otros idiomas además del inglés?</label>
+        <input type="text" name="Idiomas" placeholder="Ej. inglés y español"></div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="card">
+    <span class="step">Paso 4</span>
+    <h2>Lo que ya tienes y tu dominio</h2>
+    <p class="sub">Lo que ya existe, y la dirección web (.com) que quieres.</p>
+    <div class="grid2">
+      <div><label>Sitio web actual <span class="opt">(si tienes uno)</span></label><input type="url" name="Sitio actual" placeholder="https://"></div>
+      <div><label>¿Eres dueña de tu nombre de dominio (.com)?</label>
+        <select name="Dueno del dominio"><option value="">Selecciona…</option><option>Sí, y tengo la contraseña</option><option>Sí, pero no puedo entrar</option><option>No, necesito uno</option><option>No estoy segura</option></select></div>
+    </div>
+    <label>Nombre de dominio que quieres (o que ya tienes) <span class="req">*</span></label>
+    <p class="hint">La dirección que la gente escribe para encontrarte. No te preocupes si ya está ocupado — te ayudamos a encontrar la mejor opción disponible.</p>
+    <input type="text" name="Dominio deseado" placeholder="Ej. tunegocio.com" required>
+    <label>Otras ideas de dominio <span class="opt">(opcional)</span></label>
+    <input type="text" name="Dominios alternativos" placeholder="Un par de opciones por si la primera está ocupada">
+    <label>Si ya tienes un sitio, ¿qué te gusta y qué no te gusta de él?</label>
+    <textarea name="Gustos del sitio actual"></textarea>
+    <label class="check"><input type="checkbox" name="Tiene contenido" value="Sí"> Ya tengo contenido (textos, logo, fotos) que podemos reutilizar</label>
+    <label>Redes sociales / perfiles en línea <span class="opt">(opcional)</span></label>
+    <input type="text" name="Redes sociales" placeholder="Instagram, Facebook, Google Business, etc.">
+  </div>
+
+  <!-- 5 -->
+  <div class="card">
+    <span class="step">Paso 5</span>
+    <h2>Elige tu plan</h2>
+    <p class="sub">Elige cómo te gustaría trabajar con nosotros. ¿No estás segura? Elige "Ayúdame a decidir" y te recomendamos el mejor con tu presupuesto.</p>
+    <fieldset>
+      <label class="pill"><input type="radio" name="Plan elegido" value="Plan mensual ($99/mes + $900 para empezar)"><b>Plan mensual — $99/mes + $900 para empezar</b><span>Nosotros lo creamos, lo alojamos, lo cuidamos y lo mantenemos al día por un solo pago al mes. Tú solo te enfocas en tu negocio; nunca tocas nada técnico.</span></label>
+      <label class="pill"><input type="radio" name="Plan elegido" value="Sitio completo a medida ($1,999 un solo pago + $50/mes alojamiento)"><b>Sitio completo a medida — $1,999 un solo pago + $50/mes de alojamiento</b><span>Un solo pago. Totalmente a tu medida. Tuyo para siempre: tú eres dueña del código, el dominio y los datos. El alojamiento y la seguridad son $50/mes, aparte.</span></label>
+      <label class="pill"><input type="radio" name="Plan elegido" value="Ayúdame a decidir"><b>Ayúdame a decidir</b><span>Recomiéndame la mejor opción según mis respuestas.</span></label>
+    </fieldset>
+
+    <label style="margin-top:18px">¿Quieres agregar publicidad y aparecer en Google (SEO)? <span class="opt">(opcional)</span></label>
+    <p class="hint">SEO local, contenido y manejo de anuncios cada mes, con un reporte sencillo. Se puede agregar a cualquier plan.</p>
+    <fieldset>
+      <label class="pill"><input type="radio" name="Publicidad SEO" value="Sí — agregar SEO y publicidad ($500/mes)"><b>Sí — agregar SEO y publicidad ($500/mes)</b><span>Para traer más clientes: aparecer en Google en tu zona y manejo de anuncios.</span></label>
+      <label class="pill"><input type="radio" name="Publicidad SEO" value="Ahora no"><b>Ahora no</b><span>Solo el sitio por ahora — lo podemos agregar después.</span></label>
+    </fieldset>
+  </div>
+
+  <!-- 6 -->
+  <div class="card">
+    <span class="step">Paso 6</span>
+    <h2>Páginas del sitio</h2>
+    <p class="sub">¿Más o menos qué tan grande es el sitio? Marca las páginas que necesitas.</p>
+    <div class="grid2">
+      <label class="check"><input type="checkbox" name="Paginas" value="Inicio"> Inicio</label>
+      <label class="check"><input type="checkbox" name="Paginas" value="Nosotros / Acerca de"> Nosotros / Acerca de</label>
+      <label class="check"><input type="checkbox" name="Paginas" value="Servicios"> Servicios</label>
+      <label class="check"><input type="checkbox" name="Paginas" value="Páginas de cada servicio"> Página para cada servicio</label>
+      <label class="check"><input type="checkbox" name="Paginas" value="Contacto"> Contacto</label>
+      <label class="check"><input type="checkbox" name="Paginas" value="Galería de fotos"> Galería de fotos</label>
+      <label class="check"><input type="checkbox" name="Paginas" value="Reseñas / Opiniones"> Reseñas / Opiniones</label>
+      <label class="check"><input type="checkbox" name="Paginas" value="Blog / Noticias"> Blog / Noticias</label>
+      <label class="check"><input type="checkbox" name="Paginas" value="Preguntas frecuentes"> Preguntas frecuentes</label>
+      <label class="check"><input type="checkbox" name="Paginas" value="Precios"> Precios</label>
+      <label class="check"><input type="checkbox" name="Paginas" value="Reservar / Agendar citas"> Reservar / Agendar citas</label>
+      <label class="check"><input type="checkbox" name="Paginas" value="Tienda en línea"> Tienda en línea</label>
+      <label class="check"><input type="checkbox" name="Paginas" value="Cuenta / Iniciar sesión"> Cuenta de cliente / Iniciar sesión</label>
+      <label class="check"><input type="checkbox" name="Paginas" value="Privacidad y Términos"> Privacidad y Términos</label>
+    </div>
+    <label>¿Otras páginas que necesitas, o más o menos cuántas?</label>
+    <input type="text" name="Otras paginas">
+  </div>
+
+  <!-- 7 -->
+  <div class="card">
+    <span class="step">Paso 7</span>
+    <h2>Funciones del sitio</h2>
+    <p class="sub">Marca todo lo que el sitio necesita <em>hacer</em>. Esto es lo que más cambia el precio.</p>
+    <div class="grid2">
+      <label class="check"><input type="checkbox" name="Funciones" value="Formulario de contacto"> Formulario de contacto / mensajes</label>
+      <label class="check"><input type="checkbox" name="Funciones" value="Botón de llamar"> Botón para llamar con un toque</label>
+      <label class="check"><input type="checkbox" name="Funciones" value="Botón de WhatsApp"> Botón de WhatsApp</label>
+      <label class="check"><input type="checkbox" name="Funciones" value="Reservar / agendar citas en línea"> Reservar / agendar citas en línea</label>
+      <label class="check"><input type="checkbox" name="Funciones" value="Vender productos / cobrar pagos"> Vender productos / cobrar pagos</label>
+      <label class="check"><input type="checkbox" name="Funciones" value="Lista de correos / promociones"> Lista de correos / promociones</label>
+      <label class="check"><input type="checkbox" name="Funciones" value="Galería de fotos o video"> Galería de fotos o video</label>
+      <label class="check"><input type="checkbox" name="Funciones" value="Mapa / cómo llegar"> Mapa / cómo llegar</label>
+      <label class="check"><input type="checkbox" name="Funciones" value="Mostrar reseñas de Google"> Mostrar reseñas de Google</label>
+      <label class="check"><input type="checkbox" name="Funciones" value="Dos idiomas (inglés/español)"> Sitio en dos idiomas (inglés/español)</label>
+    </div>
+    <label>Describe cualquier función especial que necesites</label>
+    <p class="hint">Entre más específica seas, más exacto será el precio.</p>
+    <textarea name="Funciones especiales"></textarea>
+  </div>
+
+  <!-- 8 -->
+  <div class="card">
+    <span class="step">Paso 8</span>
+    <h2>Estilo y colores</h2>
+    <p class="sub">Ayúdanos a lograr el look que tienes en la cabeza — y elige tus colores.</p>
+    <label>3 a 5 sitios web que te gusten (y por qué) <span class="req">*</span></label>
+    <p class="hint">Pueden ser de la competencia o sitios que simplemente te gustan. Pega los enlaces.</p>
+    <textarea name="Sitios que me gustan" required></textarea>
+    <label>¿Algún sitio que NO te guste? ¿Qué no te gusta de él?</label>
+    <textarea name="Sitios que no me gustan"></textarea>
+
+    <label style="margin-top:18px">¿Ya tienes logo o colores de marca?</label>
+    <select name="Tiene marca"><option value="">Selecciona…</option><option>Sí, todo (colores + tipografía + logo)</option><option>Solo el logo</option><option>No — necesito ayuda para crearlo</option></select>
+
+    <label style="margin-top:18px">Elige una paleta de colores para empezar <span class="opt">(o elige los tuyos abajo)</span></label>
+    <div class="palettes">
+      <label class="pal"><input type="radio" name="Paleta" value="Llamativa y con energía (rojo / carbón / crema)">
+        <span class="dots"><i style="background:#E1452E"></i><i style="background:#15140F"></i><i style="background:#F7F5EF"></i></span>
+        <span><span class="pname">Llamativa y con energía</span><span class="pdesc">Rojo · carbón · crema</span></span></label>
+      <label class="pal"><input type="radio" name="Paleta" value="Tranquila y confiable (azul marino / cielo / blanco)">
+        <span class="dots"><i style="background:#1b2c5b"></i><i style="background:#9FC2EA"></i><i style="background:#ffffff"></i></span>
+        <span><span class="pname">Tranquila y confiable</span><span class="pdesc">Azul marino · cielo · blanco</span></span></label>
+      <label class="pal"><input type="radio" name="Paleta" value="Cálida y natural (terracota / arena / olivo)">
+        <span class="dots"><i style="background:#b6552f"></i><i style="background:#e7d3b3"></i><i style="background:#6b7045"></i></span>
+        <span><span class="pname">Cálida y natural</span><span class="pdesc">Terracota · arena · olivo</span></span></label>
+      <label class="pal"><input type="radio" name="Paleta" value="Elegante y de lujo (negro / dorado / marfil)">
+        <span class="dots"><i style="background:#111"></i><i style="background:#c9a04e"></i><i style="background:#f3efe6"></i></span>
+        <span><span class="pname">Elegante y de lujo</span><span class="pdesc">Negro · dorado · marfil</span></span></label>
+      <label class="pal"><input type="radio" name="Paleta" value="Fresca y natural (verde / menta / crema)">
+        <span class="dots"><i style="background:#2c5e23"></i><i style="background:#a8d5a2"></i><i style="background:#f6f7ef"></i></span>
+        <span><span class="pname">Fresca y natural</span><span class="pdesc">Verde · menta · crema</span></span></label>
+      <label class="pal"><input type="radio" name="Paleta" value="Sorpréndeme — confío en el diseñador">
+        <span class="dots"><i style="background:linear-gradient(135deg,#E1452E,#9FC2EA)"></i><i style="background:linear-gradient(135deg,#c9a04e,#2c5e23)"></i><i style="background:linear-gradient(135deg,#15140F,#fff)"></i></span>
+        <span><span class="pname">Sorpréndeme</span><span class="pdesc">Confío en el diseñador</span></span></label>
+    </div>
+
+    <label style="margin-top:14px">…o elige tus colores exactos</label>
+    <p class="hint">Toca cada cuadro para escoger. Déjalos así si una paleta de arriba es suficiente.</p>
+    <div class="color-pickers">
+      <div class="cp"><label>Principal</label><input type="color" name="Color principal" value="#E1452E" data-hex><span class="hex">#E1452E</span></div>
+      <div class="cp"><label>Secundario</label><input type="color" name="Color secundario" value="#15140F" data-hex><span class="hex">#15140F</span></div>
+      <div class="cp"><label>Acento</label><input type="color" name="Color de acento" value="#9FC2EA" data-hex><span class="hex">#9FC2EA</span></div>
+    </div>
+    <label style="margin-top:14px">Notas sobre los colores <span class="opt">(opcional)</span></label>
+    <input type="text" name="Notas de color" placeholder="Ej. 'que combine con mi logo', 'nada de rosa', o 'abierta a ideas'">
+
+    <label style="margin-top:18px">Elige las palabras que describan el estilo que quieres</label>
+    <div class="grid3">
+      <label class="check"><input type="checkbox" name="Estilo" value="Moderno / minimalista"> Moderno / minimalista</label>
+      <label class="check"><input type="checkbox" name="Estilo" value="Llamativo / colorido"> Llamativo / colorido</label>
+      <label class="check"><input type="checkbox" name="Estilo" value="Elegante / de lujo"> Elegante / de lujo</label>
+      <label class="check"><input type="checkbox" name="Estilo" value="Amigable / divertido"> Amigable / divertido</label>
+      <label class="check"><input type="checkbox" name="Estilo" value="Profesional / serio"> Profesional / serio</label>
+      <label class="check"><input type="checkbox" name="Estilo" value="Rústico / hecho a mano"> Rústico / hecho a mano</label>
+      <label class="check"><input type="checkbox" name="Estilo" value="Cálido / acogedor"> Cálido / acogedor</label>
+      <label class="check"><input type="checkbox" name="Estilo" value="Limpio / tranquilo"> Limpio / tranquilo</label>
+      <label class="check"><input type="checkbox" name="Estilo" value="Femenino / delicado"> Femenino / delicado</label>
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="card">
+    <span class="step">Paso 9</span>
+    <h2>Fotos y materiales</h2>
+    <p class="sub">Quién pone qué. La falta de fotos y textos es la causa #1 de retrasos.</p>
+
+    <label>Sube fotos, logo o ejemplos <span class="opt">(opcional, pero acelera todo)</span></label>
+    <p class="hint">Arrastra tu logo, fotos de tu trabajo / local / equipo, o capturas de sitios que te gusten. Aceptamos imágenes, SVG y PDF.</p>
+    <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Subir archivos">
+      <span class="emoji">🍒</span>
+      <strong>Arrastra tus archivos aquí</strong>
+      <span>o toca para buscar — fotos, logo, ejemplos</span>
+    </div>
+    <input type="file" id="fileInput" multiple accept="image/*,.pdf,.svg,.heic" hidden>
+    <div class="previews" id="previews"></div>
+    <p class="hint" id="uploadNote" style="display:none"></p>
+
+    <label style="margin-top:18px">¿Quién va a escribir los textos del sitio? <span class="req">*</span></label>
+    <fieldset>
+      <label class="check"><input type="radio" name="Textos" value="Yo escribo todos los textos" required> Yo escribo todos los textos</label>
+      <label class="check"><input type="radio" name="Textos" value="Escribo algunos; necesito ayuda con el resto"> Escribo algunos; necesito ayuda con el resto</label>
+      <label class="check"><input type="radio" name="Textos" value="Por favor escríbanlos por mí (servicio extra)"> Por favor escríbanlos por mí (servicio extra)</label>
+    </fieldset>
+    <label>Fotos / imágenes</label>
+    <fieldset>
+      <label class="check"><input type="radio" name="Fotos" value="Tengo mis propias fotos"> Tengo mis propias fotos (subidas arriba o las envío después)</label>
+      <label class="check"><input type="radio" name="Fotos" value="Usar fotos profesionales de catálogo"> Usar fotos profesionales de catálogo</label>
+      <label class="check"><input type="radio" name="Fotos" value="Necesito que arreglen la fotografía (servicio extra)"> Necesito que arreglen la fotografía (servicio extra)</label>
+    </fieldset>
+    <label class="check" style="margin-top:8px"><input type="checkbox" name="Tiene logo en alta calidad" value="Sí"> Tengo mi logo en alta calidad / formato vector</label>
+    <label>¿Algo más que debamos saber sobre tu contenido? (videos, menús, lista de precios)</label>
+    <textarea name="Notas de contenido"></textarea>
+  </div>
+
+  <!-- 10 -->
+  <div class="card">
+    <span class="step">Paso 10</span>
+    <h2>Herramientas que usas</h2>
+    <p class="sub">Programas o servicios con los que el sitio se debe conectar.</p>
+    <div class="grid2">
+      <label class="check"><input type="checkbox" name="Herramientas" value="Pagos (Stripe/PayPal/Square)"> Pagos (Stripe / PayPal / Square)</label>
+      <label class="check"><input type="checkbox" name="Herramientas" value="Sistema de citas (Calendly, Booksy, etc.)"> Sistema de citas (Booksy, Calendly, etc.)</label>
+      <label class="check"><input type="checkbox" name="Herramientas" value="Lista de correos (Mailchimp, etc.)"> Lista de correos (Mailchimp, etc.)</label>
+      <label class="check"><input type="checkbox" name="Herramientas" value="Redes sociales"> Mostrar redes sociales</label>
+      <label class="check"><input type="checkbox" name="Herramientas" value="Google Analytics / estadísticas"> Estadísticas / Google Analytics</label>
+      <label class="check"><input type="checkbox" name="Herramientas" value="Caja / inventario (POS)"> Caja / inventario (POS)</label>
+    </div>
+    <label>Otras herramientas o programas que conectar</label>
+    <input type="text" name="Otras herramientas">
+  </div>
+
+  <!-- 11 -->
+  <div class="card">
+    <span class="step">Paso 11</span>
+    <h2>Dominio y alojamiento</h2>
+    <p class="sub">Si eliges el pago único, te entregamos los archivos para que tú los alojes. En el plan mensual, nosotros nos encargamos del dominio, el alojamiento y la seguridad por ti.</p>
+    <div class="grid2">
+      <div><label>¿Tienes correo profesional (con tu dominio)?</label>
+        <select name="Correo profesional"><option value="">Selecciona…</option><option>Sí</option><option>No, me gustaría ayuda</option><option>No estoy segura</option></select></div>
+      <div><label>¿Necesitas ayuda con el dominio?</label>
+        <select name="Ayuda con dominio"><option value="">Selecciona…</option><option>Sí, regístralo por mí</option><option>Sí, ayúdame a transferirlo</option><option>No, ya lo tengo listo</option></select></div>
+    </div>
+  </div>
+
+  <!-- 12 -->
+  <div class="card">
+    <span class="step">Paso 12</span>
+    <h2>Cómo conseguir más clientes <span class="opt" style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">(opcional)</span></h2>
+    <p class="sub">Solo si quieres que te encuentren y crecer. Omítelo si no aplica.</p>
+    <div class="grid2">
+      <label class="check"><input type="checkbox" name="Marketing" value="Aparecer en Google / Google Business"> Aparecer en Google y Google Business</label>
+      <label class="check"><input type="checkbox" name="Marketing" value="SEO (palabras clave, estructura)"> SEO (palabras clave, estructura)</label>
+      <label class="check"><input type="checkbox" name="Marketing" value="Blog / contenido constante"> Blog / contenido constante</label>
+      <label class="check"><input type="checkbox" name="Marketing" value="Correos / promociones"> Correos / promociones</label>
+      <label class="check"><input type="checkbox" name="Marketing" value="Manejo de redes sociales"> Manejo de redes sociales</label>
+      <label class="check"><input type="checkbox" name="Marketing" value="Anuncios pagados (Google / Facebook)"> Anuncios pagados (Google / Facebook)</label>
+    </div>
+    <label>¿Qué buscaría la gente en Google para encontrarte?</label>
+    <input type="text" name="Palabras clave" placeholder="Ej. 'salón de belleza White Center', 'barbería West Seattle'">
+  </div>
+
+  <!-- 13 -->
+  <div class="card">
+    <span class="step">Paso 13</span>
+    <h2>Fechas y presupuesto</h2>
+    <p class="sub">Respuestas honestas aquí nos ayudan a planear bien — sin juzgar.</p>
+    <div class="grid2">
+      <div><label>¿Para cuándo quieres lanzarlo? <span class="req">*</span></label>
+        <select name="Fecha de lanzamiento" required><option value="">Selecciona…</option><option>Lo antes posible</option><option>En 1 mes</option><option>En 1 a 3 meses</option><option>En 3 a 6 meses</option><option>Flexible</option></select></div>
+      <div><label>¿Hay alguna fecha o evento importante?</label><input type="text" name="Fecha limite" placeholder="Ej. apertura el 1 de agosto"></div>
+    </div>
+    <label>Presupuesto para crear el sitio <span class="req">*</span></label>
+    <p class="hint">Un rango está bien. Esto nos deja recomendarte lo correcto en vez de adivinar.</p>
+    <select name="Presupuesto" required>
+      <option value="">Selecciona…</option>
+      <option>Menos de $1,000</option>
+      <option>$1,000 – $2,500</option>
+      <option>$2,500 – $5,000</option>
+      <option>Más de $5,000</option>
+      <option>No estoy segura — recomiéndame</option>
+    </select>
+    <label>Presupuesto mensual (alojamiento / mantenimiento / publicidad)</label>
+    <select name="Presupuesto mensual">
+      <option value="">Selecciona…</option>
+      <option>Hasta $50/mes</option><option>$50–$150/mes</option><option>$150–$300/mes</option><option>Más de $300/mes</option><option>No aplica</option>
+    </select>
+  </div>
+
+  <!-- 14 -->
+  <div class="card">
+    <span class="step">Paso 14</span>
+    <h2>Algo más</h2>
+    <p class="sub">Lo que no cabe en una casilla.</p>
+    <label>¿Algo que no te preguntamos y que deberíamos saber?</label>
+    <textarea name="Notas adicionales"></textarea>
+    <label>¿Cómo te enteraste de The Now Designs?</label>
+    <input type="text" name="Como nos conociste">
+    <label class="check" style="margin-top:14px"><input type="checkbox" name="Acepto" value="Sí" required> <span>Entiendo que este formulario se usa para preparar un presupuesto personalizado y sin compromiso, y que el precio, el alcance y las fechas finales se confirman por escrito antes de empezar cualquier trabajo. <span class="req">*</span></span></label>
+  </div>
+
+  <div class="actions">
+    <button type="button" class="btn-primary" onclick="downloadAnswers()">⬇ Descargar mis respuestas</button>
+    <button type="button" class="btn-ghost" onclick="window.print()">🖨 Imprimir / Guardar como PDF</button>
+    <p class="note">Toca <strong>Descargar mis respuestas</strong> para guardar lo que escribiste, y luego envíanoslo por WhatsApp o correo junto con tus fotos. <em>(Este formulario guarda tus archivos en tu teléfono — no se envían solos.)</em></p>
+  </div>
+  </form>
+
+  <footer>
+    The Now Designs · Formulario para tu sitio web · <a href="https://thenowdesigns.com">thenowdesigns.com</a>
+  </footer>
+</div>
+
+<script>
+  // fecha de hoy por defecto
+  document.getElementById('f_date').valueAsDate = new Date();
+
+  // mostrar el código hex bajo cada selector de color
+  document.querySelectorAll('input[type=color][data-hex]').forEach(function(inp){
+    var span = inp.parentElement.querySelector('.hex');
+    inp.addEventListener('input', function(){ span.textContent = inp.value.toUpperCase(); });
+  });
+
+  // ---- subir archivos (vista previa en el teléfono; los archivos no salen del dispositivo) ----
+  var uploaded = [];
+  var dz = document.getElementById('dropzone');
+  var fileInput = document.getElementById('fileInput');
+  var previews = document.getElementById('previews');
+  var uploadNote = document.getElementById('uploadNote');
+
+  dz.addEventListener('click', function(){ fileInput.click(); });
+  dz.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); fileInput.click(); } });
+  ['dragover','dragenter'].forEach(function(ev){
+    dz.addEventListener(ev, function(e){ e.preventDefault(); dz.classList.add('drag'); });
+  });
+  ['dragleave','dragend','drop'].forEach(function(ev){
+    dz.addEventListener(ev, function(e){ e.preventDefault(); dz.classList.remove('drag'); });
+  });
+  dz.addEventListener('drop', function(e){ addFiles(e.dataTransfer.files); });
+  fileInput.addEventListener('change', function(){ addFiles(fileInput.files); });
+
+  function fmtSize(b){ return b>1048576 ? (b/1048576).toFixed(1)+' MB' : Math.max(1,Math.round(b/1024))+' KB'; }
+
+  function addFiles(list){
+    Array.prototype.forEach.call(list, function(file){
+      uploaded.push({name:file.name, size:file.size});
+      var card = document.createElement('div');
+      card.className = 'thumb';
+      var x = document.createElement('button');
+      x.type='button'; x.className='x'; x.innerHTML='&times;'; x.title='Quitar';
+      var rec = uploaded[uploaded.length-1];
+      x.addEventListener('click', function(){
+        var i = uploaded.indexOf(rec); if(i>-1) uploaded.splice(i,1);
+        card.remove(); renderNote();
+      });
+      if(file.type.indexOf('image/')===0){
+        var img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        img.onload = function(){ URL.revokeObjectURL(img.src); };
+        card.appendChild(img);
+        var fn = document.createElement('div'); fn.className='fname'; fn.textContent=file.name;
+        card.appendChild(fn);
+      } else {
+        var doc = document.createElement('div'); doc.className='doc';
+        doc.textContent = '📄 ' + file.name;
+        card.appendChild(doc);
+      }
+      card.appendChild(x);
+      previews.appendChild(card);
+    });
+    renderNote();
+  }
+
+  function renderNote(){
+    if(uploaded.length){
+      uploadNote.style.display='block';
+      uploadNote.innerHTML = '<strong>'+uploaded.length+'</strong> archivo'+(uploaded.length>1?'s':'')+
+        ' listo'+(uploaded.length>1?'s':'')+'. Aparecen en tu resumen descargado — por favor <strong>adjunta los mismos archivos</strong> cuando nos los envíes.';
+    } else { uploadNote.style.display='none'; }
+  }
+
+  function downloadAnswers(){
+    const form = document.getElementById('intake');
+    const data = {};
+    const fd = new FormData(form);
+    for (const [k,v] of fd.entries()){
+      if (v === '' || v === null) continue;
+      if (data[k]) data[k] = [].concat(data[k], v);
+      else data[k] = v;
+    }
+    let out = "THE NOW DESIGNS — RESPUESTAS DEL CLIENTE\n";
+    out += "Fecha: " + (document.getElementById('f_date').value || '') + "\n";
+    out += "=".repeat(52) + "\n\n";
+    for (const k in data){
+      const val = Array.isArray(data[k]) ? data[k].join(", ") : data[k];
+      out += k + ":\n  " + val + "\n\n";
+    }
+    if (uploaded.length){
+      out += "ARCHIVOS ADJUNTOS (por favor adjúntalos al enviar):\n";
+      uploaded.forEach(function(f){ out += "  • " + f.name + " (" + fmtSize(f.size) + ")\n"; });
+      out += "\n";
+    }
+    const biz = (data['Nombre del negocio']||'cliente').toString().replace(/[^a-z0-9]/gi,'-').toLowerCase();
+    const blob = new Blob([out], {type:'text/plain'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'respuestas-' + biz + '.txt';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  }
+</script>
+</body>
+</html>
