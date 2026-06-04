@@ -96,6 +96,9 @@
     padding:13px 22px;cursor:pointer;transition:.15s}
   .btn-primary{background:var(--cherry);color:#fff;box-shadow:0 10px 26px -10px var(--cherry)}
   .btn-primary:hover{background:var(--cherry-deep);transform:translateY(-1px)}
+  .btn-wa{background:#25D366;color:#0a2e16;box-shadow:0 10px 26px -10px #25D366;display:inline-flex;align-items:center;gap:8px}
+  .btn-wa:hover{background:#1ebe5b;transform:translateY(-1px)}
+  .btn-wa .wa-ico{font-size:17px;line-height:1}
   .btn-ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
   .btn-ghost:hover{border-color:var(--cherry);color:var(--cherry-deep)}
   .note{font-size:12px;color:var(--muted);margin:0;flex:1 1 240px}
@@ -458,9 +461,10 @@
   </div>
 
   <div class="actions">
-    <button type="button" class="btn-primary" onclick="downloadAnswers()">⬇ Descargar mis respuestas</button>
-    <button type="button" class="btn-ghost" onclick="window.print()">🖨 Imprimir / Guardar como PDF</button>
-    <p class="note">Toca <strong>Descargar mis respuestas</strong> para guardar lo que escribiste, y luego envíanoslo por WhatsApp o correo junto con tus fotos. <em>(Este formulario guarda tus archivos en tu teléfono — no se envían solos.)</em></p>
+    <button type="button" class="btn-wa" onclick="sendWhatsApp()"><span class="wa-ico">📲</span> Enviar por WhatsApp</button>
+    <button type="button" class="btn-ghost" onclick="downloadAnswers()">⬇ Descargar</button>
+    <button type="button" class="btn-ghost" onclick="window.print()">🖨 Guardar PDF</button>
+    <p class="note">Toca <strong>Enviar por WhatsApp</strong> y se abrirá un mensaje con tus respuestas listo para enviarme — solo dale enviar. Luego, en ese mismo chat, adjunta tus fotos y tu logo. 🍒</p>
   </div>
   </form>
 
@@ -533,19 +537,45 @@
     if(uploaded.length){
       uploadNote.style.display='block';
       uploadNote.innerHTML = '<strong>'+uploaded.length+'</strong> archivo'+(uploaded.length>1?'s':'')+
-        ' listo'+(uploaded.length>1?'s':'')+'. Aparecen en tu resumen descargado — por favor <strong>adjunta los mismos archivos</strong> cuando nos los envíes.';
+        ' listo'+(uploaded.length>1?'s':'')+'. Estos quedan en tu teléfono — al final, <strong>adjúntalos en el chat de WhatsApp</strong> cuando me envíes tus respuestas.';
     } else { uploadNote.style.display='none'; }
   }
 
-  function downloadAnswers(){
-    const form = document.getElementById('intake');
+  // junta todas las respuestas en un objeto
+  function collectData(){
+    const fd = new FormData(document.getElementById('intake'));
     const data = {};
-    const fd = new FormData(form);
     for (const [k,v] of fd.entries()){
       if (v === '' || v === null) continue;
       if (data[k]) data[k] = [].concat(data[k], v);
       else data[k] = v;
     }
+    return data;
+  }
+
+  // ---- enviar todo por WhatsApp con un toque ----
+  var TND_WHATSAPP = '13605095594';
+  function sendWhatsApp(){
+    const data = collectData();
+    let msg = '🍒 *The Now Designs — Mis respuestas*\n';
+    msg += 'Fecha: ' + (document.getElementById('f_date').value || '') + '\n\n';
+    for (const k in data){
+      const val = Array.isArray(data[k]) ? data[k].join(', ') : data[k];
+      msg += '*' + k + ':* ' + val + '\n';
+    }
+    if (uploaded.length){
+      msg += '\n📎 *Fotos/archivos por enviar (' + uploaded.length + '):*\n';
+      uploaded.forEach(function(f){ msg += '• ' + f.name + '\n'; });
+      msg += '👉 Por favor adjunta estas fotos aquí mismo en el chat.\n';
+    } else {
+      msg += '\n📎 Voy a enviar mis fotos y mi logo aquí mismo en el chat.\n';
+    }
+    const url = 'https://wa.me/' + TND_WHATSAPP + '?text=' + encodeURIComponent(msg);
+    window.open(url, '_blank');
+  }
+
+  function downloadAnswers(){
+    const data = collectData();
     let out = "THE NOW DESIGNS — RESPUESTAS DEL CLIENTE\n";
     out += "Fecha: " + (document.getElementById('f_date').value || '') + "\n";
     out += "=".repeat(52) + "\n\n";
