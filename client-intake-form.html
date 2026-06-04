@@ -128,6 +128,12 @@
 
   <form id="intake">
 
+  <!-- Web3Forms delivery -->
+  <input type="hidden" name="access_key" value="cefe34f9-7266-4558-a8ee-f3a8ad09e6de">
+  <input type="hidden" name="subject" value="New custom design brief — The Now Designs">
+  <input type="hidden" name="from_name" value="The Now Designs intake form">
+  <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none!important">
+
   <!-- 1 -->
   <div class="card">
     <span class="step">Step 1</span>
@@ -343,12 +349,12 @@
     <h2>Content &amp; Assets</h2>
     <p class="sub">Who provides what. Missing content is the #1 cause of delays.</p>
 
-    <label>Upload photos, logos, or examples <span class="opt">(optional, but it speeds things up)</span></label>
-    <p class="hint">Drag in your logo, product/team photos, or screenshots of sites you like. Images, SVG, and PDF welcome.</p>
-    <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Upload files">
+    <label>Gather your photos, logo, or examples <span class="opt">(optional, but it speeds things up)</span></label>
+    <p class="hint">Pick the files you want to send — your logo, product/team photos, or screenshots of sites you like. After you submit, we'll show you where to email these same files so we get the full-resolution originals.</p>
+    <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Choose files">
       <span class="emoji">🍒</span>
-      <strong>Drag &amp; drop files here</strong>
-      <span>or click to browse — photos, logo, inspiration</span>
+      <strong>Tap to choose your files</strong>
+      <span>photos, logo, inspiration — drag &amp; drop works too</span>
     </div>
     <input type="file" id="fileInput" multiple accept="image/*,.pdf,.svg,.heic" hidden>
     <div class="previews" id="previews"></div>
@@ -462,9 +468,10 @@
   </div>
 
   <div class="actions">
-    <button type="button" class="btn-primary" onclick="downloadAnswers()">⬇ Download my brief</button>
-    <button type="button" class="btn-ghost" onclick="window.print()">🖨 Print / Save as PDF</button>
-    <p class="note">Click <strong>Download my brief</strong> to save your answers, then email them to us along with any photos you uploaded. <em>(This form keeps your files on your device — it doesn't auto-send.)</em></p>
+    <button type="submit" class="btn-primary" id="submitBtn">Send my brief <span aria-hidden="true">→</span></button>
+    <button type="button" class="btn-ghost" onclick="downloadAnswers()">⬇ Download a copy</button>
+    <button type="button" class="btn-ghost" onclick="window.print()">🖨 Print / PDF</button>
+    <p class="note" id="formNote">Click <strong>Send my brief</strong> and your answers come straight to us. We'll reply the same day with your custom estimate.</p>
   </div>
   </form>
 
@@ -482,6 +489,54 @@
     var span = inp.parentElement.querySelector('.hex');
     inp.addEventListener('input', function(){ span.textContent = inp.value.toUpperCase(); });
   });
+
+  // ---- submit the brief to us via Web3Forms (text answers; photos are emailed separately) ----
+  var intakeForm = document.getElementById('intake');
+  intakeForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var btn = document.getElementById('submitBtn');
+    var note = document.getElementById('formNote');
+    var original = btn.innerHTML;
+    btn.disabled = true; btn.innerHTML = 'Sending…';
+    note.textContent = '';
+
+    var fd = new FormData(intakeForm);
+    fd.set('Date', document.getElementById('f_date').value || '');
+    // file uploads aren't transmitted (no name on the picker) — list the chosen files so we know what to expect
+    if (uploaded.length){
+      fd.append('Photos to be emailed separately', uploaded.map(function(f){ return f.name; }).join(', '));
+    }
+
+    fetch('https://api.web3forms.com/submit', { method:'POST', body: fd })
+      .then(function(r){ return r.json(); })
+      .then(function(json){
+        if (json.success){ showSuccess(); }
+        else { throw new Error(json.message || 'Submission failed'); }
+      })
+      .catch(function(){
+        btn.disabled = false; btn.innerHTML = original;
+        note.innerHTML = '⚠️ Something went wrong sending your brief. Please use <strong>Download a copy</strong> and email it to ' +
+          '<a href="mailto:aiden@thenowdesigns.com">aiden@thenowdesigns.com</a>, or try again.';
+      });
+  });
+
+  function showSuccess(){
+    intakeForm.style.display = 'none';
+    var files = uploaded.length
+      ? ' (the ' + uploaded.length + ' file' + (uploaded.length>1?'s':'') + ' you selected: ' + uploaded.map(function(f){return f.name;}).join(', ') + ')'
+      : '';
+    var card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML =
+      '<span class="step">Done</span>' +
+      '<h2>Thank you — your brief is on its way 🍒</h2>' +
+      '<p class="sub">We\'ve received your answers and will reply the same day with your custom estimate.</p>' +
+      '<p style="font-size:14.5px"><strong>One last step — your photos &amp; logo.</strong> Email them' + files +
+      ' to <a href="mailto:aiden@thenowdesigns.com?subject=My%20photos%20%26%20logo" style="color:var(--cherry-deep);font-weight:600">aiden@thenowdesigns.com</a>' +
+      ' (or text them to us) and we\'ll get started right away.</p>';
+    intakeForm.parentNode.insertBefore(card, intakeForm.nextSibling);
+    window.scrollTo({ top:0, behavior:'smooth' });
+  }
 
   // ---- file upload (client-side previews; files stay on device) ----
   var uploaded = [];           // {name, size}
@@ -537,7 +592,7 @@
     if(uploaded.length){
       uploadNote.style.display='block';
       uploadNote.innerHTML = '<strong>'+uploaded.length+'</strong> file'+(uploaded.length>1?'s':'')+
-        ' ready. These are listed in your downloaded brief — please <strong>attach the same files to your email</strong> so we receive them.';
+        ' selected. We\'ll list these in your brief — after you submit, we\'ll show you where to <strong>email the same files</strong> so we get the originals.';
     } else { uploadNote.style.display='none'; }
   }
 
@@ -545,8 +600,9 @@
     const form = document.getElementById('intake');
     const data = {};
     const fd = new FormData(form);
+    const skip = {access_key:1, subject:1, from_name:1, botcheck:1};
     for (const [k,v] of fd.entries()){
-      if (v === '' || v === null) continue;
+      if (v === '' || v === null || skip[k]) continue;
       if (data[k]) data[k] = [].concat(data[k], v);
       else data[k] = v;
     }
