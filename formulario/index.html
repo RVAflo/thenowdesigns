@@ -96,9 +96,6 @@
     padding:13px 22px;cursor:pointer;transition:.15s}
   .btn-primary{background:var(--cherry);color:#fff;box-shadow:0 10px 26px -10px var(--cherry)}
   .btn-primary:hover{background:var(--cherry-deep);transform:translateY(-1px)}
-  .btn-wa{background:#25D366;color:#0a2e16;box-shadow:0 10px 26px -10px #25D366;display:inline-flex;align-items:center;gap:8px}
-  .btn-wa:hover{background:#1ebe5b;transform:translateY(-1px)}
-  .btn-wa .wa-ico{font-size:17px;line-height:1}
   .btn-ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
   .btn-ghost:hover{border-color:var(--cherry);color:var(--cherry-deep)}
   .note{font-size:12px;color:var(--muted);margin:0;flex:1 1 240px}
@@ -136,6 +133,12 @@
   </header>
 
   <form id="intake">
+
+  <!-- Entrega por Web3Forms -->
+  <input type="hidden" name="access_key" value="cefe34f9-7266-4558-a8ee-f3a8ad09e6de">
+  <input type="hidden" name="subject" value="Nuevo formulario (ES) — The Now Designs">
+  <input type="hidden" name="from_name" value="The Now Designs · formulario">
+  <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none!important">
 
   <!-- 1 -->
   <div class="card">
@@ -461,10 +464,10 @@
   </div>
 
   <div class="actions">
-    <button type="button" class="btn-wa" onclick="sendWhatsApp()"><span class="wa-ico">📲</span> Enviar por WhatsApp</button>
+    <button type="submit" class="btn-primary" id="submitBtn">Enviar mis respuestas <span aria-hidden="true">→</span></button>
     <button type="button" class="btn-ghost" onclick="downloadAnswers()">⬇ Descargar</button>
     <button type="button" class="btn-ghost" onclick="window.print()">🖨 Guardar PDF</button>
-    <p class="note">Toca <strong>Enviar por WhatsApp</strong> y se abrirá un mensaje con tus respuestas listo para enviarme — solo dale enviar. Luego, en ese mismo chat, adjunta tus fotos y tu logo. 🍒</p>
+    <p class="note" id="formNote">Toca <strong>Enviar mis respuestas</strong> y me llegan directo. Te respondo el mismo día. Después solo me mandas tus fotos y tu logo por WhatsApp o correo. 🍒</p>
   </div>
   </form>
 
@@ -537,41 +540,68 @@
     if(uploaded.length){
       uploadNote.style.display='block';
       uploadNote.innerHTML = '<strong>'+uploaded.length+'</strong> archivo'+(uploaded.length>1?'s':'')+
-        ' listo'+(uploaded.length>1?'s':'')+'. Estos quedan en tu teléfono — al final, <strong>adjúntalos en el chat de WhatsApp</strong> cuando me envíes tus respuestas.';
+        ' listo'+(uploaded.length>1?'s':'')+'. Quedan en tu teléfono — después de enviar, te diré a dónde <strong>mandarme las mismas fotos</strong> para tener los originales.';
     } else { uploadNote.style.display='none'; }
   }
 
-  // junta todas las respuestas en un objeto
+  // junta todas las respuestas en un objeto (omite los campos internos de Web3Forms)
   function collectData(){
     const fd = new FormData(document.getElementById('intake'));
     const data = {};
+    const skip = {access_key:1, subject:1, from_name:1, botcheck:1};
     for (const [k,v] of fd.entries()){
-      if (v === '' || v === null) continue;
+      if (v === '' || v === null || skip[k]) continue;
       if (data[k]) data[k] = [].concat(data[k], v);
       else data[k] = v;
     }
     return data;
   }
 
-  // ---- enviar todo por WhatsApp con un toque ----
-  var TND_WHATSAPP = '13605095594';
-  function sendWhatsApp(){
-    const data = collectData();
-    let msg = '🍒 *The Now Designs — Mis respuestas*\n';
-    msg += 'Fecha: ' + (document.getElementById('f_date').value || '') + '\n\n';
-    for (const k in data){
-      const val = Array.isArray(data[k]) ? data[k].join(', ') : data[k];
-      msg += '*' + k + ':* ' + val + '\n';
-    }
+  // ---- enviar las respuestas directo por Web3Forms (las fotos se mandan aparte) ----
+  var intakeForm = document.getElementById('intake');
+  intakeForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var btn = document.getElementById('submitBtn');
+    var note = document.getElementById('formNote');
+    var original = btn.innerHTML;
+    btn.disabled = true; btn.innerHTML = 'Enviando…';
+    note.textContent = '';
+
+    var fd = new FormData(intakeForm);
+    fd.set('Fecha', document.getElementById('f_date').value || '');
     if (uploaded.length){
-      msg += '\n📎 *Fotos/archivos por enviar (' + uploaded.length + '):*\n';
-      uploaded.forEach(function(f){ msg += '• ' + f.name + '\n'; });
-      msg += '👉 Por favor adjunta estas fotos aquí mismo en el chat.\n';
-    } else {
-      msg += '\n📎 Voy a enviar mis fotos y mi logo aquí mismo en el chat.\n';
+      fd.append('Fotos por enviar aparte', uploaded.map(function(f){ return f.name; }).join(', '));
     }
-    const url = 'https://wa.me/' + TND_WHATSAPP + '?text=' + encodeURIComponent(msg);
-    window.open(url, '_blank');
+
+    fetch('https://api.web3forms.com/submit', { method:'POST', body: fd })
+      .then(function(r){ return r.json(); })
+      .then(function(json){
+        if (json.success){ showSuccess(); }
+        else { throw new Error(json.message || 'Error'); }
+      })
+      .catch(function(){
+        btn.disabled = false; btn.innerHTML = original;
+        note.innerHTML = '⚠️ Algo falló al enviar. Usa <strong>Descargar</strong> y mándamelo a ' +
+          '<a href="mailto:aiden@thenowdesigns.com">aiden@thenowdesigns.com</a>, o intenta de nuevo.';
+      });
+  });
+
+  function showSuccess(){
+    intakeForm.style.display = 'none';
+    var files = uploaded.length
+      ? ' (los ' + uploaded.length + ' archivo' + (uploaded.length>1?'s':'') + ' que elegiste: ' + uploaded.map(function(f){return f.name;}).join(', ') + ')'
+      : '';
+    var card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML =
+      '<span class="step">Listo</span>' +
+      '<h2>¡Gracias! Tus respuestas ya van en camino 🍒</h2>' +
+      '<p class="sub">Las recibí y te respondo el mismo día con tu presupuesto.</p>' +
+      '<p style="font-size:14.5px"><strong>Último paso — tus fotos y tu logo.</strong> Mándamelos' + files +
+      ' por WhatsApp o a <a href="mailto:aiden@thenowdesigns.com?subject=Mis%20fotos%20y%20logo" style="color:var(--cherry-deep);font-weight:600">aiden@thenowdesigns.com</a>' +
+      ' y empiezo de inmediato.</p>';
+    intakeForm.parentNode.insertBefore(card, intakeForm.nextSibling);
+    window.scrollTo({ top:0, behavior:'smooth' });
   }
 
   function downloadAnswers(){
