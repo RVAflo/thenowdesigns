@@ -104,6 +104,10 @@
   .req{color:var(--cherry)}
   .lang{font-size:12.5px}
   .lang a{color:var(--cream);opacity:.8;text-decoration:underline}
+  .preview-cta{display:inline-flex;align-items:center;gap:8px;margin-top:18px;
+    background:var(--cherry);color:#fff;text-decoration:none;font-weight:700;font-size:14.5px;
+    padding:11px 18px;border-radius:999px;box-shadow:0 10px 26px -10px var(--cherry);transition:.15s}
+  .preview-cta:hover{background:var(--cherry-deep);transform:translateY(-1px)}
   @media print{
     body{background:#fff}.actions,.dropzone,.thumb .x{display:none}
     header.masthead{box-shadow:none;-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -120,6 +124,7 @@
     </div>
     <h1>Tu sitio web — <em>cuéntanos de tu negocio</em></h1>
     <p>Entre más detalles nos des aquí, más exacto será tu presupuesto — y más rápido lo construimos. No hay respuestas incorrectas; si no estás segura, escribe "no sé" y nosotros te guiamos. Toma unos 15–20 minutos. Puedes responder en español.</p>
+    <a class="preview-cta" href="/preview/karis/" target="_blank" rel="noopener">🍒 Ver una muestra de tu salón <span aria-hidden="true">→</span></a>
     <div class="meta">
       <span><strong>Fecha:</strong> <input type="date" id="f_date" style="width:auto;padding:4px 8px;border-radius:6px;border:none;color:#15140F"></span>
       <span>Los campos con <span class="req">*</span> son obligatorios</span>
