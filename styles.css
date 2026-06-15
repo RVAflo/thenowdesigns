@@ -434,3 +434,87 @@ section[id]{scroll-margin-top:90px;}
   *{animation:none!important;scroll-behavior:auto;}
   [data-reveal]{opacity:1;transform:none;}
 }
+
+/* =================================================================
+   HOMEPAGE REDESIGN — "Atelier in Motion" (scoped: body.home + new
+   classes only). Nothing above this block is modified; sub-pages
+   (/about /services /work) are unaffected. Warm paper dominates;
+   blue demoted to the single "Why us" panel.
+   ================================================================= */
+
+/* brand heartbeat dot on the wordmark */
+.brand-dot{margin-left:9px;width:7px;height:7px;}
+
+/* 1 · HERO — paper canvas, asymmetric split (text left / cherry right) */
+.hero--split{background:var(--paper);}
+.hero--split .eyebrow,.hero--split .aco-pill{color:var(--ink);}
+.hero__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:center;}
+.hero--split .hero__copy{max-width:none;}
+.hero--split h1{font-size:clamp(2.9rem,8vw,6.4rem);margin-bottom:24px;max-width:13ch;}
+.hero--split .lead{color:var(--muted);max-width:40ch;margin-bottom:34px;}
+.hero__media{margin-top:0;}
+.hero__frame--video{aspect-ratio:4/5;background:var(--cream);border-radius:14px;box-shadow:0 40px 80px -42px rgba(21,20,15,.4);}
+.hero__video{width:100%;height:100%;object-fit:cover;display:block;background:var(--cream);}
+@media(max-width:860px){
+  .hero__grid{grid-template-columns:1fr;gap:36px;}
+  .hero--split .hero__copy{order:0;}
+  .hero__media{order:1;}
+  .hero__frame--video{aspect-ratio:16/10;max-height:60vh;}
+  .hero--split h1{max-width:100%;}
+  .hero--split .lead{max-width:52ch;}
+}
+
+/* 3 · THE CHERRY — split: plate image left, statement right */
+.split__grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(32px,5vw,72px);align-items:center;}
+.split__media{margin:0;}
+.split__frame{aspect-ratio:4/5;border-radius:14px;overflow:hidden;background:radial-gradient(120% 130% at 70% 20%,#efe8da,#d8c9ad 70%,#c2b395);border:1px solid var(--line);box-shadow:0 36px 70px -42px rgba(21,20,15,.4);}
+.split__frame img{width:100%;height:100%;object-fit:cover;display:block;}
+.split__copy .eyebrow{color:var(--cherry);margin-bottom:18px;display:inline-flex;}
+.split__copy h2{margin-bottom:18px;}
+.split__sub{color:var(--muted);font-size:clamp(1.1rem,1.7vw,1.35rem);max-width:34ch;margin-bottom:18px;}
+.split__line{font-family:var(--display);font-style:italic;font-size:clamp(1.15rem,2vw,1.55rem);line-height:1.25;color:var(--ink);max-width:30ch;}
+@media(max-width:760px){.split__grid{grid-template-columns:1fr;gap:28px;}.split__media{order:-1;}.split__frame{aspect-ratio:4/3;}}
+
+/* 4 · NEURO-INFORMED DESIGN — dark, neuro-bloom backdrop, cherry icons */
+.neuro{background:var(--ink);background-image:linear-gradient(rgba(21,20,15,.86),rgba(21,20,15,.94)),url('/img/neuro-bloom.jpg');background-size:cover;background-position:center;}
+.neuro .sec-head .eyebrow{color:var(--blue);}
+.neuro__grid{display:grid;gap:clamp(20px,3vw,42px);grid-template-columns:repeat(auto-fit,minmax(250px,1fr));}
+.neuro__item{border-top:2px solid var(--cherry);padding-top:20px;}
+.neuro__item h3{font-family:var(--display);font-weight:400;font-size:1.4rem;line-height:1.12;margin-bottom:10px;color:var(--paper);display:flex;align-items:baseline;gap:10px;}
+.neuro__item h3 .ic{color:var(--cherry);flex:none;}
+.neuro__item p{color:rgba(247,245,239,.74);font-size:.98rem;}
+.neuro__note{margin-top:clamp(28px,4vw,44px);font-size:.82rem;color:rgba(247,245,239,.5);max-width:64ch;}
+
+/* 5 · SERVICES — lean cards: number + name + tag only */
+.svc-grid--lean .svc--lean{min-height:0;gap:10px;padding:clamp(26px,2.6vw,38px);}
+.svc--lean .svc__tag{margin-top:0;opacity:.75;}
+.svc-more{margin-top:clamp(26px,3vw,40px);}
+.svc-more a{color:var(--cherry);font-weight:600;}
+.svc-more a:hover{text-decoration:underline;}
+
+/* 6 · WHY US — quiet blue panel, one line each */
+.why--lean .why-grid{gap:clamp(20px,2.4vw,40px);}
+.why--lean .why-item{padding-top:20px;}
+.why--lean .why-item h3{margin-bottom:0;font-size:clamp(1.15rem,1.8vw,1.4rem);line-height:1.18;}
+
+/* 9 · TRUST BAND — single line, no border-top, centred chips */
+.trust .trust-band--solo{border-top:none;padding-top:0;justify-content:center;}
+@media(max-width:560px){.trust .trust-band--solo{justify-content:flex-start;}}
+
+/* ---- HOMEPAGE MOTION (transform/opacity only, reduced-motion gated) ---- */
+@media (prefers-reduced-motion:no-preference){
+  /* cherry-roll on the process steps — each number rolls in on reveal */
+  .steps--roll .step .step__n{display:inline-block;transform:rotate(-90deg) translateX(8px);opacity:0;transition:transform .7s var(--ease),opacity .7s var(--ease);transform-origin:center;}
+  .steps--roll .step[data-reveal].in .step__n{transform:rotate(0) translateX(0);opacity:1;}
+  .steps--roll .step[data-reveal][data-d="2"].in .step__n{transition-delay:.12s;}
+  .steps--roll .step[data-reveal][data-d="3"].in .step__n{transition-delay:.18s;}
+  .steps--roll .step[data-reveal][data-d="4"].in .step__n{transition-delay:.24s;}
+}
+
+/* ---- homepage responsive tightening ---- */
+@media (max-width:640px){
+  .hero--split{padding:96px 0 56px;}
+  .hero--split h1{font-size:clamp(2.4rem,11vw,3.3rem);}
+  .split__sub{max-width:100%;}
+  .split__line{max-width:100%;}
+}

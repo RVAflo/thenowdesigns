@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>The Now Designs — Agentic, AI-accelerated web design</title>
-<meta name="description" content="Agentic, AI-accelerated web design. Fast, beautiful, conversion-first websites built with AI (including Anthropic's Claude) so your business stays ahead — all done for you." />
-<meta property="og:title" content="The Now Designs — Agentic, AI-accelerated web design" />
-<meta property="og:description" content="Fast, beautiful, conversion-first websites — designed, built, and launched for you. AI-accelerated, hand-finished." />
+<title>The Now Designs — AI-accelerated web studio</title>
+<meta name="description" content="AI-accelerated web studio. We design, build, and launch your whole website for you — live in weeks, owned outright by you. Neuro-informed design, hand-finished." />
+<meta property="og:title" content="The Now Designs — AI-accelerated web studio" />
+<meta property="og:description" content="Your whole website, done for you. Designed, built, and launched — AI-accelerated, hand-finished, yours to keep." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://thenowdesigns.com/" />
 <meta property="og:image" content="https://thenowdesigns.com/img/og-card.png" />
@@ -16,42 +16,42 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600;1,9..144,900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
+  <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
 </head>
-<body id="top">
+<body id="top" class="home">
 
 <nav class="nav" id="nav">
-  <a href="/" class="brand" aria-label="The Now Designs">The N<span class="cherry-o" aria-hidden="true"></span>w Designs</a>
+  <a href="/" class="brand" aria-label="The Now Designs">The N<span class="cherry-o" aria-hidden="true"></span>w Designs<span class="brand-dot live-dot" aria-hidden="true"></span></a>
   <div class="nav-links" id="navlinks">
     <a href="/services/">Services</a>
-    <a href="/about/">About</a>
-    <a href="/#process">Process</a>
     <a href="/work/">Work</a>
     <a href="/#pricing">Pricing</a>
-    <a href="/#contact" class="btn btn--ink">Book now</a>
+    <a href="/#contact" class="btn btn--ink">Book</a>
   </div>
   <button class="nav-toggle" id="toggle" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
-<header class="hero">
-  <div class="hero__inner">
-    <span class="aco-pill" data-reveal><span class="live-dot" aria-hidden="true"></span> Agentic web design · AI-accelerated</span>
-    <h1 class="display" data-reveal data-d="1">Your whole website, <em>done for&nbsp;you.</em> Fast, and yours to keep.</h1>
-    <p class="lead" data-reveal data-d="2">We design, build, and launch a fast, conversion-first website start to finish — live in weeks, owned outright by you. You get the cherry on top; your competitors get the screenshot.</p>
-    <div class="hero__cta" data-reveal data-d="3">
-      <a href="/#contact" class="btn btn--cherry btn--lg">Book a free call <span class="arrow">→</span></a>
-      <a href="/work/" class="hero__link">or see the work <span class="arrow">→</span></a>
+<!-- 1 · HERO — paper canvas, cherry-drop video, text left / cherry right -->
+<header class="hero hero--split">
+  <div class="hero__inner hero__grid">
+    <div class="hero__copy">
+      <span class="aco-pill" data-reveal><span class="live-dot" aria-hidden="true"></span> AI-accelerated web studio</span>
+      <h1 class="display" data-reveal data-d="1">Your whole website. <em>Done for&nbsp;you.</em></h1>
+      <p class="lead" data-reveal data-d="2">We design, build, and launch it for you — live in weeks, owned outright by you.</p>
+      <div class="hero__cta" data-reveal data-d="3">
+        <a href="/#contact" class="btn btn--cherry btn--lg">Book a free call <span class="arrow">→</span></a>
+        <a href="/work/" class="hero__link">see the work <span class="arrow">→</span></a>
+      </div>
     </div>
-    <div class="hero__trust" data-reveal data-d="4">
-      <span><b>Hand-built</b>, not templated</span><span class="sep"></span>
-      <span><b>Sub-second</b> load times</span><span class="sep"></span>
-      <span>You <b>own everything</b></span>
-    </div>
-    <figure class="hero__visual" data-reveal data-d="4">
-      <div class="hero__frame"><img src="/img/hero.jpg" alt="A laptop showing a beautiful website with a fresh cherry beside it on a clean desk"></div>
+    <figure class="hero__visual hero__media" data-reveal data-d="2">
+      <div class="hero__frame hero__frame--video">
+        <img class="hero__video" src="/img/hero-cherry.jpg" alt="" aria-hidden="true">
+      </div>
     </figure>
   </div>
 </header>
 
+<!-- 2 · MARQUEE — ink band, cherry pips -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee__track">
     <span>All done for you <i class="pip"></i> All done for you <i class="pip"></i> All done for you <i class="pip"></i> All done for you <i class="pip"></i> All done for you <i class="pip"></i> All done for you <i class="pip"></i> All done for you <i class="pip"></i> All done for you <i class="pip"></i> All done for you <i class="pip"></i> All done for you <i class="pip"></i> </span>
@@ -59,140 +59,122 @@
   </div>
 </div>
 
-<section class="sec aco" id="agentic">
-  <div class="wrap">
-    <span class="aco__badge" data-reveal><span class="spark">⚡</span> Built with AI</span>
-    <h2 class="aco__title" data-reveal data-d="1">AI changed web design. <em>Don't get left behind.</em></h2>
-    <p class="aco__lead" data-reveal data-d="2">AI tooling now does in days what used to take agencies months. We build with it — including Anthropic's Claude — so your site ships faster, costs less, and stays ahead of studios still doing everything by hand. You move first; everyone else plays catch-up.</p>
-    <div class="aco__grid">
-      <div class="aco__item" data-reveal data-d="1"><h3>Built at AI speed</h3><p>Weeks, not months. AI does the heavy lifting; we direct the taste and quality. You launch while competitors are still waiting on a quote.</p></div>
-      <div class="aco__item" data-reveal data-d="2"><h3>Research-backed, not guesswork</h3><p>AI researches your market, drafts the copy, and tunes for conversion — then a real designer makes it beautiful.</p></div>
-      <div class="aco__item" data-reveal data-d="3"><h3>Keeps up with you</h3><p>New page, new campaign, new feature — shipped in days, not quarters. Your site keeps pace with your business.</p></div>
+<!-- 3 · THE CHERRY — split: plate image left, statement right -->
+<section class="sec split" id="cherry">
+  <div class="wrap split__grid">
+    <figure class="split__media" data-reveal>
+      <div class="split__frame"><img src="/img/cherry-plate.jpg" alt="A single fresh cherry resting on a clean plate" loading="lazy"></div>
+    </figure>
+    <div class="split__copy" data-reveal data-d="1">
+      <span class="eyebrow">Why the cherry</span>
+      <h2 class="h-sec">Plain vanilla. <em>Cherry on top.</em></h2>
+      <p class="split__sub">Everyone can build a site that works. We build the one people remember.</p>
+      <p class="split__line">AI-built. Hand-finished. Agency-grade in weeks — without the agency invoice.</p>
     </div>
-    <p class="aco__note" data-reveal>We build using leading AI tools, including Anthropic's Claude. The Now Designs is independent and is not affiliated with, endorsed by, or sponsored by Anthropic.</p>
   </div>
 </section>
 
+<!-- 4 · NEURO-INFORMED DESIGN — dark, neuro-bloom backdrop -->
+<section class="sec sec--ink neuro" id="method">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow">Our method · neuro-informed design</span>
+      <h2 class="h-sec">We design for the brain — <em>before</em> the eye.</h2>
+      <p>Attention is decided in the first five seconds, below conscious thought. We engineer every page around how the brain actually reads, feels, and decides — then pressure-test it in our own R&amp;D lab.</p>
+    </div>
+    <div class="neuro__grid">
+      <div class="neuro__item" data-reveal data-d="1"><h3><span class="ic">⚡</span> The 5-second window</h3><p>The thalamus routes a page to the amygdala before your cortex names what it's looking at — you feel a site before you read it. We design the first frame for that fast emotional path.</p></div>
+      <div class="neuro__item" data-reveal data-d="2"><h3><span class="ic">◆</span> Anticipation, then payoff</h3><p>Dopamine fires twice — once anticipating, once on reward. We build pages as a build-and-release: tension, then the resolve that earns the click.</p></div>
+      <div class="neuro__item" data-reveal data-d="3"><h3><span class="ic">🧠</span> VRIBE — our in-silico lab</h3><p>VRIBE is our in-house brain-response model. We pressure-test creative against predicted cortical attention before it ships — so the work is informed by neuroscience, not guesswork.</p></div>
+    </div>
+    <p class="neuro__note" data-reveal>Methodology and R&amp;D, not a per-visitor service or mind-reading. VRIBE is for non-commercial in-house research; we apply what it teaches, we don't sell its outputs.</p>
+  </div>
+</section>
+
+<!-- 5 · SERVICES — number + name + 3-word tag only -->
 <section class="sec" id="services">
   <div class="wrap">
     <div class="sec-head" data-reveal>
       <span class="eyebrow">What we do</span>
       <h2 class="h-sec">Everything you need. <em>Nothing you don't.</em></h2>
-      <p>Four ways we take the website off your plate — and turn it into the hardest-working salesperson you've got. <a href="/services/" style="color:var(--cherry);font-weight:600;">See all services →</a></p>
     </div>
-    <div class="svc-grid">
-      <article class="svc" data-reveal data-d="1"><span class="svc__num">01</span><h3 class="svc__name">Web Design</h3><span class="svc__tag">Design + Build</span><p class="svc__desc">Editorial, conversion-minded sites built by hand. Beautiful on every screen, fast as hell, with SEO baked in from line one. No page-builder bloat.</p></article>
-      <article class="svc" data-reveal data-d="2"><span class="svc__num">02</span><h3 class="svc__name">Brand Identity</h3><span class="svc__tag">Logo + System</span><p class="svc__desc">Marks, palettes, and type systems with a point of view — identities that feel inevitable, not decorated. So your site looks like a brand, not a theme.</p></article>
-      <article class="svc" data-reveal data-d="3"><span class="svc__num">03</span><h3 class="svc__name">Development</h3><span class="svc__tag">Custom Code</span><p class="svc__desc">Custom code where templates stop. Animations, integrations, the works — fast, accessible, and yours to keep. Squarespace optional, never required.</p></article>
-      <article class="svc" data-reveal data-d="4"><span class="svc__num">04</span><h3 class="svc__name">Growth</h3><span class="svc__tag">SEO + Marketing</span><p class="svc__desc">Local SEO that actually ranks, content built on search data, and monthly reports you can read in 60 seconds. We watch your numbers climb so you don't have to.</p></article>
+    <div class="svc-grid svc-grid--lean">
+      <article class="svc svc--lean" data-reveal data-d="1"><span class="svc__num">01</span><h3 class="svc__name">Web Design</h3><span class="svc__tag">Built by hand</span></article>
+      <article class="svc svc--lean" data-reveal data-d="2"><span class="svc__num">02</span><h3 class="svc__name">Brand Identity</h3><span class="svc__tag">A point of view</span></article>
+      <article class="svc svc--lean" data-reveal data-d="3"><span class="svc__num">03</span><h3 class="svc__name">Development</h3><span class="svc__tag">Custom code, yours</span></article>
+      <article class="svc svc--lean" data-reveal data-d="4"><span class="svc__num">04</span><h3 class="svc__name">Growth</h3><span class="svc__tag">SEO that ranks</span></article>
     </div>
+    <p class="svc-more" data-reveal><a href="/services/">See all services →</a></p>
   </div>
 </section>
 
-<section class="sec sec--blue why" id="why">
+<!-- 6 · WHY US — the single quiet blue panel, one line each -->
+<section class="sec sec--blue why why--lean" id="why">
   <div class="wrap">
     <p class="why-quote" data-reveal>Few clients. Full attention. <em>Real results.</em></p>
     <div class="why-grid">
-      <div class="why-item" data-reveal data-d="1"><h3><span class="i">01</span> You text the designer</h3><p>No ticket system. No "account manager" who's never touched a line of code. You message the person actually building your site — and get an answer the same day.</p></div>
-      <div class="why-item" data-reveal data-d="2"><h3><span class="i">02</span> Built to load instantly</h3><p>Zero bloat. Every kilobyte justified. Your site loads before they blink — Google notices, and your visitors notice more. A perfect performance score is the floor, not the goal.</p></div>
-      <div class="why-item" data-reveal data-d="3"><h3><span class="i">03</span> You own everything</h3><p>Your code, your domain, your data. No vendor lock-in, no hostage situations. If we're not earning it, you walk with everything. That's how it should work.</p></div>
+      <div class="why-item" data-reveal data-d="1"><h3><span class="i">01</span> Text the person who builds it.</h3></div>
+      <div class="why-item" data-reveal data-d="2"><h3><span class="i">02</span> Loads in under a second.</h3></div>
+      <div class="why-item" data-reveal data-d="3"><h3><span class="i">03</span> You own the code, domain &amp; data — forever.</h3></div>
     </div>
   </div>
 </section>
 
+<!-- 7 · PROCESS — reassurance ladder, cherry-roll on scroll -->
 <section class="sec sec--cream" id="process">
   <div class="wrap">
     <div class="sec-head" data-reveal>
       <span class="eyebrow">How it works</span>
       <h2 class="h-sec">Live in <em>weeks</em>, not months.</h2>
-      <p>Four steps. One direct line to the person building it. No approval chains, no waiting rooms.</p>
     </div>
-    <div class="steps steps--flow">
-      <div class="step" data-reveal data-d="1"><div class="step__n">01</div><h4>The Call</h4><p>A free, no-pitch conversation. You tell us what you're building; we tell you exactly what we'd do — and what it costs.</p></div>
-      <div class="step" data-reveal data-d="2"><div class="step__n">02</div><h4>The Design</h4><p>We design the whole thing in your brand. You see real screens, not mood boards — and shape it with us before a single line ships.</p></div>
-      <div class="step" data-reveal data-d="3"><div class="step__n">03</div><h4>The Build</h4><p>We hand-code it: fast, responsive, SEO-ready. Weekly updates, revisions until it's right, no surprises.</p></div>
-      <div class="step" data-reveal data-d="4"><div class="step__n">04</div><h4>The Launch</h4><p>We ship it locked-down and lightning quick — then hand you the keys. 4–6 weeks, start to live. Cherry on top included.</p></div>
+    <div class="steps steps--flow steps--roll">
+      <div class="step" data-reveal data-d="1"><div class="step__n">01</div><h4>Call</h4><p>A free, no-pitch chat about what you're building.</p></div>
+      <div class="step" data-reveal data-d="2"><div class="step__n">02</div><h4>Design</h4><p>Real screens in your brand — shaped with you.</p></div>
+      <div class="step" data-reveal data-d="3"><div class="step__n">03</div><h4>Build</h4><p>Hand-coded, fast, and SEO-ready.</p></div>
+      <div class="step" data-reveal data-d="4"><div class="step__n">04</div><h4>Launch</h4><p>We ship it and hand you the keys.</p></div>
     </div>
   </div>
 </section>
 
-<section class="sec" id="work">
+<!-- 8 · STANDARD / STATS -->
+<section class="sec" id="standard">
   <div class="wrap">
-    <div class="sec-head" data-reveal><span class="eyebrow">How we build</span><h2 class="h-sec">Built to a <em>standard.</em></h2><p>Every site ships to the same bar — hand-built, fast, and made to convert.</p></div>
+    <div class="sec-head" data-reveal><span class="eyebrow">The standard</span><h2 class="h-sec">Built to a <em>standard.</em></h2></div>
     <div class="stats">
-      <div data-reveal data-d="1"><div class="stat__n">100<em>%</em></div><div class="stat__l">Hand-built — never templated</div></div>
+      <div data-reveal data-d="1"><div class="stat__n">100<em>%</em></div><div class="stat__l">Hand-built, never templated</div></div>
       <div data-reveal data-d="2"><div class="stat__n">Sub<em>-second</em></div><div class="stat__l">Load times we engineer for</div></div>
       <div data-reveal data-d="3"><div class="stat__n">SEO<em>-first</em></div><div class="stat__l">Built to rank from line one</div></div>
-      <div data-reveal data-d="4"><div class="stat__n">6</div><div class="stat__l">Clients at a time — on purpose</div></div>
+      <div data-reveal data-d="4"><div class="stat__n">6</div><div class="stat__l">Clients at a time, on purpose</div></div>
     </div>
   </div>
 </section>
 
-<section class="sec sec--blue" id="cherry">
+<!-- 9 · TRUST BAND — one line of chips -->
+<section class="sec sec--ink trust" id="trust">
   <div class="wrap">
-    <div class="sec-head" data-reveal>
-      <span class="eyebrow" style="color:var(--cherry)">Why the cherry?</span>
-      <h2 class="h-sec">Plain vanilla. <em>Cherry on top.</em></h2>
-      <p style="color:rgba(21,20,15,.72)">Most of what makes a website great is plain vanilla — and we do all of it. What people remember is the one thing on top.</p>
-    </div>
-    <div class="vanilla-grid">
-      <div data-reveal>
-        <span class="vanilla-tag">The vanilla — table stakes</span>
-        <ul class="vanilla-list">
-          <li>Fast, sub-second loads</li>
-          <li>Responsive on every screen</li>
-          <li>Clean, hand-written code</li>
-          <li>SEO done right from line one</li>
-          <li>Secure — and yours to keep</li>
-        </ul>
-      </div>
-      <div class="cherry-card" data-reveal data-d="2">
-        <span class="cherry-tag">🍒 The cherry — the one thing that's different</span>
-        <h3>AI-built. <em>Hand-finished.</em></h3>
-        <p>We build with agentic AI, then finish every detail by hand. You get an agency-grade custom site in weeks, not months — without the agency-sized invoice.</p>
-        <p class="kicker">Vanilla gets you a site that works. The cherry gets you one that <em>sells.</em></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec sec--ink" id="security">
-  <div class="wrap">
-    <div class="sec-head" data-reveal>
-      <span class="eyebrow">Security · not optional</span>
-      <h2 class="h-sec">It's not about the website. It's about <em>keeping what's yours.</em></h2>
-      <p>AI didn't just change how websites get built — it changed how they get attacked. Bots, phishing nets, and scrapers run around the clock, below the surface, headless — never even opening a browser. They harvest data, clone ideas, and hijack identities before anyone notices. A website is the easy part. Keeping <em>you</em> safe online is the real work.</p>
-    </div>
-    <div class="shield-grid">
-      <div class="shield" data-reveal data-d="1"><h3><span class="ic">⚠</span> The threat is invisible</h3><p>Most attacks never touch a browser. Automated bots probe, scrape, and phish below the surface, 24/7. If a site isn't locked down at the wire, you won't see it happen — you'll only see the damage.</p></div>
-      <div class="shield" data-reveal data-d="2"><h3><span class="ic">💡</span> Your ideas are the target</h3><p>In an AI world, your unique ideas are what make you money. The wrong setup lets anyone copy your content, lift your data, and profit off what you built. We make sure your ideas keep paying <em>you.</em></p></div>
-      <div class="shield" data-reveal data-d="3"><h3><span class="ic">🔒</span> We lock it down</h3><p>Every site ships with end-to-end HTTPS encryption and secure DNS routed through <b>Cloudflare</b> — the same infrastructure that protects a huge slice of the internet. Renowned, battle-tested, and standard on every build.</p></div>
-    </div>
-    <div class="trust-band" data-reveal>
-      <span class="trust-band__lbl">Secured with</span>
-      <span class="trust-chip"><b>Cloudflare</b> DNS</span>
+    <div class="trust-band trust-band--solo" data-reveal>
+      <span class="trust-band__lbl">Secured by</span>
+      <span class="trust-chip"><b>Cloudflare</b></span>
       <span class="trust-chip"><b>HTTPS</b> / TLS 1.3</span>
       <span class="trust-chip"><b>DNSSEC</b></span>
-      <span class="trust-chip"><b>SSL</b> on every page</span>
-      <span class="trust-chip">Bot &amp; DDoS protection</span>
+      <span class="trust-chip">You own everything</span>
     </div>
-    <p class="secure-kicker" data-reveal>Your identity, your data, your ideas — <em>safe, and yours to keep.</em></p>
   </div>
 </section>
 
+<!-- 10 · PRICING -->
 <section class="sec sec--cream" id="pricing">
   <div class="wrap">
-    <div class="sec-head" data-reveal><span class="eyebrow">What it costs</span><h2 class="h-sec">Let's talk about <em>real</em> numbers.</h2></div>
-    <p class="price-note" data-reveal><b>Most studios won't publish prices. That's a tell.</b> Most of a typical agency bill is overhead — sales teams, project managers, office rent. You're paying for the operation, not the craft. We run six clients at a time, with no middlemen, so you pay for the work and nothing else. Two simple ways to start — pay monthly, or own it outright.</p>
+    <div class="sec-head" data-reveal><span class="eyebrow">What it costs</span><h2 class="h-sec">Real numbers. <em>No games.</em></h2><p>Most studios hide prices — that's the overhead talking. Pay monthly, or own it outright.</p></div>
     <div class="tiers">
       <div class="tier" data-reveal data-d="1">
-        <div class="tier__name">Built &amp; Maintained</div><div class="tier__price">$99 <em>/mo</em></div><div class="tier__hosting">+ $900 to start</div><div class="tier__sub">We build it, host it, and keep it running — you just focus on your business.</div>
-        <ul><li>Hand-built, conversion-first website</li><li>Hosting, security &amp; updates handled</li><li>On-page SEO built in from line one</li><li>Content updates included</li><li>Same-day replies · month-to-month</li></ul>
+        <div class="tier__name">Built &amp; Maintained</div><div class="tier__price">$99 <em>/mo</em></div><div class="tier__hosting">+ $900 to start</div>
+        <ul><li>Hand-built site</li><li>Hosting + security handled</li><li>On-page SEO</li><li>Same-day replies</li><li>Month-to-month</li></ul>
         <a href="https://whop.com/checkout/plan_kSuP88kPmIQEa" target="_blank" rel="noopener" class="btn btn--cherry">Get started <span class="arrow">→</span></a>
       </div>
       <div class="tier tier--feat" data-reveal data-d="2">
-        <span class="tier__badge">Own it outright</span><div class="tier__name">Full Custom Website</div><div class="tier__price">$1,999 <em>one-time</em></div><div class="tier__hosting">+ $50 / month hosting, invoiced separately</div><div class="tier__sub">One payment. Fully custom. Yours to keep, forever.</div>
-        <ul><li>Fully custom design &amp; build, unlimited pages</li><li>You own the code, domain &amp; data — no lock-in</li><li>Custom features &amp; integrations</li><li>Secured: HTTPS + Cloudflare DNS, included</li><li>Hosting, security &amp; updates — $50/mo, invoiced separately</li><li>Direct line to your designer</li></ul>
+        <span class="tier__badge">Own it outright</span><div class="tier__name">Full Custom</div><div class="tier__price">$1,999 <em>one-time</em></div><div class="tier__hosting">+ $50 / month hosting</div>
+        <ul><li>Fully custom, unlimited pages</li><li>You own code, domain &amp; data</li><li>Custom features</li><li>Cloudflare-secured</li><li>Direct line to your designer</li></ul>
         <a href="https://whop.com/checkout/plan_zgsUfDgpzpj8b" target="_blank" rel="noopener" class="btn btn--ghost">Buy now</a>
       </div>
     </div>
@@ -201,20 +183,14 @@
       <div>
         <div class="addon__tag">Add-on · advertising</div>
         <div class="addon__name">SEO &amp; Advertising</div>
-        <div class="addon__desc">Local SEO, search-data content, and ad campaign management that brings the traffic — with a 60-second monthly report you can actually read. Invoiced separately; add it to either plan.</div>
+        <div class="addon__desc">Local SEO, search-data content, ad management, 60-second monthly report. Add to either plan.</div>
       </div>
       <div></div>
       <div class="addon__price">$500 <em>/mo</em></div>
     </div>
 
     <div class="proof" data-reveal>
-      <p class="proof__avail"><span class="live-dot" aria-hidden="true"></span> Now booking a limited number of builds this month — six clients at a time, on purpose.</p>
-      <div class="proof__badges">
-        <span class="proof__badge">Hand-built, never templated</span>
-        <span class="proof__badge">Sub-second load times</span>
-        <span class="proof__badge">You own everything</span>
-        <span class="proof__badge">Same-day replies</span>
-      </div>
+      <p class="proof__avail"><span class="live-dot" aria-hidden="true"></span> Booking a limited number of builds this month.</p>
     </div>
 
     <!-- ============================================================
@@ -234,13 +210,13 @@
   </div>
 </section>
 
-<section class="sec sec--blue contact" id="contact">
+<!-- 11 · CONTACT — Web3Forms form unchanged -->
+<section class="sec sec--cream contact" id="contact">
   <div class="wrap contact-grid">
     <div data-reveal>
       <span class="eyebrow" style="color:var(--ink)">Let's team up</span>
       <h2 class="h-sec" style="margin-top:16px">Tell us what <em>you're building.</em></h2>
-      <p class="lead" style="color:rgba(21,20,15,.72)">We'll tell you exactly what we'd do — and what it'd cost — free. No pitch, no pressure.</p>
-      <p class="form-reassure"><span class="live-dot" aria-hidden="true"></span> Same-day reply, straight from the person who'll build it. No bots, no call centre.</p>
+      <p class="lead" style="color:rgba(21,20,15,.72)">We'll tell you what we'd do — and what it costs. Free. Same-day reply from the person who builds it.</p>
       <form id="tnd-form" action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="cefe34f9-7266-4558-a8ee-f3a8ad09e6de">
         <input type="hidden" name="subject" value="New inquiry from thenowdesigns.com">
@@ -255,23 +231,23 @@
       </form>
     </div>
     <aside class="contact__aside" data-reveal data-d="2">
-      <h3>Prefer to just email?</h3>
-      <p>Drop us a line and we'll get back to you the same day. We actually read these.</p>
+      <h3>Prefer to email?</h3>
       <a class="mail" href="mailto:aiden@thenowdesigns.com">aiden@thenowdesigns.com</a>
-      <div class="pts"><div><span class="c">✓</span> Free, no-pitch first call</div><div><span class="c">✓</span> Same-day responses</div><div><span class="c">✓</span> 4–6 week launches</div><div><span class="c">✓</span> You own everything, always</div></div>
+      <div class="pts"><div><span class="c">✓</span> Free first call</div><div><span class="c">✓</span> Same-day replies</div><div><span class="c">✓</span> You own everything</div></div>
     </aside>
   </div>
 </section>
 
+<!-- 12 · FOOTER -->
 <footer class="footer">
   <div class="wrap">
     <div class="footer__top">
       <div><a href="/" class="footer-brand"><img class="footer-logo" src="/img/logo-wordmark.png" alt="The Now Designs"></a><p class="footer__big" style="margin-top:24px">Your website, <em>all done for you.</em></p></div>
-      <div class="footer__links"><a href="/services/">Services</a><a href="/about/">About</a><a href="/#process">Process</a><a href="/work/">Work</a><a href="/#pricing">Pricing</a><a href="/#contact">Book now</a></div>
+      <div class="footer__links"><a href="/services/">Services</a><a href="/about/">About</a><a href="/work/">Work</a><a href="/#pricing">Pricing</a><a href="/#contact">Book</a></div>
     </div>
     <div class="footer__bot">
       <span>© <span id="yr"></span> The Now Designs. Fairly normal designs, with a cherry on top.</span>
-      <span class="footer__legal"><a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/cookies/">Cookies</a> · <a href="https://www.instagram.com/thenowdesigns" target="_blank" rel="noopener" aria-label="The Now Designs on Instagram">Instagram</a></span>
+      <span class="footer__legal"><a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="https://www.instagram.com/thenowdesigns" target="_blank" rel="noopener" aria-label="The Now Designs on Instagram">Instagram</a></span>
       <a href="mailto:aiden@thenowdesigns.com">aiden@thenowdesigns.com</a>
     </div>
   </div>
