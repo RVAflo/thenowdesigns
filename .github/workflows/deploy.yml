@@ -1,0 +1,37 @@
+name: Deploy to GitHub Pages
+
+# Builds the Vite + vite-react-ssg site and publishes dist/ to the `gh-pages`
+# branch, which GitHub Pages serves. Triggers only on main (post-merge) +
+# manual dispatch, so unmerged feature branches never touch production.
+#
+# One-time repo setting: Settings -> Pages -> Build and deployment ->
+# Source = "Deploy from a branch" -> Branch: gh-pages / (root).
+# dist/ already contains CNAME + .nojekyll, so the custom domain carries over.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
