@@ -1,7 +1,13 @@
+import { Suspense, lazy, useEffect, useState } from 'react'
 import KineticHeading, { type Seg } from './KineticHeading'
+import { useCapability } from '../three/useCapability'
+import SafeBoundary from './SafeBoundary'
 
-// Shared subpage hero. Phase 5 mounts a lightweight floating-cherry 3D accent
-// in the corner here (capability-gated); for now it is clean kinetic type.
+// Shared subpage hero with kinetic type and a lightweight, capability-gated,
+// lazy-loaded floating-cherry 3D accent in the corner (poster-free; the blue
+// panel is the fallback when 3D is off).
+const HeroAccentCanvas = lazy(() => import('../three/HeroAccentCanvas'))
+
 export default function PageHero({
   eyebrow,
   heading,
@@ -11,8 +17,23 @@ export default function PageHero({
   heading: Seg[]
   lead: string
 }) {
+  const enabled = useCapability()
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   return (
     <header className="page-hero">
+      {mounted && enabled && (
+        <div className="page-hero__accent" aria-hidden="true">
+          <SafeBoundary>
+            <Suspense fallback={null}>
+              <HeroAccentCanvas />
+            </Suspense>
+          </SafeBoundary>
+        </div>
+      )}
       <div className="wrap">
         <span className="eyebrow" data-reveal>{eyebrow}</span>
         <KineticHeading as="h1" segments={heading} />

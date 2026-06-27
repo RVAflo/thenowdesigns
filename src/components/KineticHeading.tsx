@@ -24,7 +24,9 @@ export default function KineticHeading({
           <Fragment key={si}>
             {tokens.map((tok, ti) => {
               if (tok === '') return null
-              if (/^\s+$/.test(tok)) return <span key={ti} className="kspace"> </span>
+              // a real space text node — keeps the accessible/SEO text intact
+              // (the per-letter spans are inline-block, so spaces still show)
+              if (/^\s+$/.test(tok)) return <Fragment key={ti}> </Fragment>
               return (
                 <span key={ti} className={'kw' + (seg.em ? ' kw--em' : '')}>
                   {[...tok].map((ch, ci) => {

@@ -21,10 +21,12 @@ export default defineConfig({
     },
   },
   ssgOptions: {
-    script: 'async',
-    formatting: 'minify',
+    // MUST be 'defer' (not 'async'): the entry module reads the inline
+    // window.__VITE_REACT_SSG_HASH__ set at end of <body>. 'async' races it,
+    // yielding a manifest-undefined.json fetch -> HTML -> router crash -> #418.
+    script: 'defer',
+    // NOTE: do NOT set formatting:'minify' — collapsing whitespace in the
+    // prerendered HTML breaks React hydration (text-node mismatch -> #418).
     dirStyle: 'nested',
-    // crittersOptions: inline critical CSS is on by default; our global stylesheet
-    // is a static /styles.css link, so it is left as-is (fast, cached, shared).
   },
 })
