@@ -1,9 +1,22 @@
+# dependencies / build output
+node_modules
+dist
+*.local
+
+# editor / os
 .DS_Store
-*.txt
-*.mp4
+.gstack/
+
+# stray scratch files (keep ignoring these from the old static site)
 Gemini_Generated_Image_*
 *-squarespace.html
 content-only.html
 code-block.html
 skills-flip.html
-.gstack/
+
+# the static site ignored *.txt and *.mp4 globally — keep that, but allow the
+# committed public assets the 3D build needs:
+*.txt
+*.mp4
+!public/**/*.txt
+!public/**/*.mp4

@@ -1,0 +1,31 @@
+{
+  "name": "thenowdesigns",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "The Now Designs — immersive 3D web studio site",
+  "scripts": {
+    "dev": "vite-react-ssg dev",
+    "build": "vite-react-ssg build",
+    "preview": "vite preview --port 4173 --host"
+  },
+  "dependencies": {
+    "@react-three/drei": "10.7.7",
+    "@react-three/fiber": "9.6.1",
+    "@react-three/postprocessing": "3.0.4",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "react-router-dom": "^6.28.0",
+    "three": "^0.185.0",
+    "vite-react-ssg": "0.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.1",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/three": "^0.185.0",
+    "@vitejs/plugin-react-swc": "4.3.1",
+    "typescript": "^6.0.3",
+    "vite": "7.3.6"
+  }
+}
