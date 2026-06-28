@@ -353,3 +353,63 @@
     display: none !important;
   }
 }
+
+/* =================================================================
+   DOPAMINE PASS — centered layout, letters spiral in, vacuum cherry
+   ================================================================= */
+
+/* letters spiral onto the page (reduced-motion users get static) */
+@media (prefers-reduced-motion: no-preference) {
+  [data-kinetic] .kl {
+    opacity: 0;
+    transform: rotate(-210deg) scale(0.12) translateY(0.5em);
+    transform-origin: 50% 60%;
+    transition: opacity 0.55s var(--ease), transform 0.8s var(--ease);
+    transition-delay: calc(var(--i) * 34ms);
+  }
+  [data-kinetic].in .kl {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* centered editorial layout: hero stacks (copy over cherry), heads centered */
+.hero--split .hero__grid {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+  gap: clamp(28px, 5vw, 56px);
+}
+.hero--split .hero__copy {
+  max-width: 68ch;
+}
+.hero--split h1,
+.hero--split .lead {
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero--split .hero__cta {
+  justify-content: center;
+}
+.hero__media {
+  width: min(560px, 92%);
+  margin-left: auto;
+  margin-right: auto;
+}
+.sec .sec-head {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.sec-head .eyebrow {
+  justify-content: center;
+}
+.sec-head p {
+  margin-left: auto;
+  margin-right: auto;
+}
+.why-quote {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}

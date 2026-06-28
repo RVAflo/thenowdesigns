@@ -4,12 +4,12 @@ import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
 import SafeBoundary from '../components/SafeBoundary'
 
-// The brand cherry. Prefers a photoreal GLB at /models/cherry.glb if one is
-// present (drop the Higgsfield-generated file in and redeploy — no code change),
-// otherwise renders a hand-built procedural cherry. Either way it lives inside
-// the same animated group: idle float + spin, damped pointer parallax, and a
-// scroll-driven "pull-in" scale. The procedural cherry is also the loading
-// state and the failure fallback, so the hero never breaks.
+// The brand cherry. Prefers a photoreal GLB at /models/cherry.glb if present
+// (drop the file in, redeploy — no code change), else a hand-built procedural
+// cherry (also the loading state + failure fallback). Lives in an animated
+// group: idle float + spin, damped pointer parallax, and a scroll-driven
+// "vacuum" — it scales up and rushes toward the camera as you scroll, like
+// the page is sucking you in.
 const GLB_URL = '/models/cherry.glb'
 
 function ProceduralCherry() {
@@ -70,7 +70,6 @@ export default function Cherry({ scroll }: { scroll: React.MutableRefObject<numb
   const group = useRef<THREE.Group>(null)
   const [useGlb, setUseGlb] = useState(false)
 
-  // drop-in detection: use the GLB only if the file is actually present
   useEffect(() => {
     let alive = true
     fetch(GLB_URL, { method: 'HEAD' })
@@ -83,12 +82,17 @@ export default function Cherry({ scroll }: { scroll: React.MutableRefObject<numb
     const g = group.current
     if (!g) return
     const t = state.clock.elapsedTime
-    g.rotation.y += delta * 0.22
+    const s = scroll.current
+    // spin (accelerates as you scroll in) + idle bob
+    g.rotation.y += delta * (0.22 + s * 1.4)
     g.position.y = -0.1 + Math.sin(t * 1.1) * 0.06
+    // damped pointer parallax
     g.rotation.z = THREE.MathUtils.lerp(g.rotation.z, -state.pointer.x * 0.16, 0.05)
     g.rotation.x = THREE.MathUtils.lerp(g.rotation.x, state.pointer.y * 0.12, 0.05)
-    const target = 1 + scroll.current * 0.55
-    g.scale.setScalar(THREE.MathUtils.lerp(g.scale.x, target, 0.08))
+    // VACUUM: grow hard and rush toward the camera (which sits at z=5)
+    const targetScale = 1 + s * 2.2
+    g.scale.setScalar(THREE.MathUtils.lerp(g.scale.x, targetScale, 0.1))
+    g.position.z = THREE.MathUtils.lerp(g.position.z, s * 3.2, 0.1)
   })
 
   return (
