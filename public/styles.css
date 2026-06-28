@@ -6,7 +6,7 @@
 
 :root{
   --blue:#9FC2EA; --blue-deep:#7FA9DC; --ink:#15140F; --cream:#B3DCFF;
-  --paper:#CDE8FF; --cherry:#E1452E; --cherry-deep:#C5391F; --muted:#5C594F;
+  --paper:#CDE8FF; --cherry:#E1452E; --cherry-deep:#C5391F; --muted:#494236;
   --line:rgba(21,20,15,.14);
   --display:'Unbounded','Fraunces',Georgia,serif;
   --body:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,sans-serif;

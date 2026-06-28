@@ -43,7 +43,7 @@ export default function Home() {
         <div className="hero__inner hero__grid">
           <div className="hero__copy">
             <span className="aco-pill" data-reveal>
-              <span className="live-dot" aria-hidden="true"></span> AI-accelerated web studio
+              <span className="live-dot" aria-hidden="true"></span> AI-accelerated · 100% human-finished
             </span>
             <KineticHeading
               className="display"
@@ -235,7 +235,7 @@ export default function Home() {
           <div className="callout" data-reveal>
             <p className="callout__line">
               Start with a <em>free 5-minute teardown</em> of your current site. No pitch — just a
-              diagnostic. Not a fit? We'll point you to who is.
+              diagnostic. Not a fit? We'll tell you who to call instead.
             </p>
             <Link to="/#contact" className="btn btn--cherry btn--lg">
               Get my teardown <span className="arrow">→</span>

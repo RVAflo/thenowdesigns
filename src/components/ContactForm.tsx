@@ -88,6 +88,7 @@ export default function ContactForm() {
       <button type="submit" id="tnd-submit" className="btn btn--cherry btn--lg" disabled={sending}>
         <span className="btn__label">{sending ? 'Sending…' : 'Send it'}</span> <span className="arrow">→</span>
       </button>
+      <p className="form-note">Same-day reply — no pitch, no pressure.</p>
       <p id="tnd-form-status" className={'form-status ' + status.cls} role="status" aria-live="polite">
         {status.msg}
       </p>

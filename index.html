@@ -5,11 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!-- per-page <title> + meta are injected by each route's <Head> (vite-react-ssg / react-helmet) -->
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preload" as="image" href="/img/hero-cherry.jpg" fetchpriority="high" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap"></noscript>
 <link rel="stylesheet" href="/styles.css">
 <noscript><style>[data-reveal],[data-kinetic] span{opacity:1!important;transform:none!important}</style></noscript>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"The Now Designs","url":"https://thenowdesigns.com/","email":"aiden@thenowdesigns.com","description":"AI-accelerated web studio. We design, build, and launch your whole website for you — live in weeks, owned outright by you.","logo":"https://thenowdesigns.com/img/logo-wordmark.png","image":"https://thenowdesigns.com/img/og-card.png","sameAs":["https://www.instagram.com/thenowdesigns"]}</script>
 </head>
 <body id="top">
   <div id="root"></div>

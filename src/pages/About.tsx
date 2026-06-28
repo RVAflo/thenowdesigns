@@ -68,7 +68,7 @@ export default function About() {
             <p>Three things most agencies make you choose between. We don't.</p>
           </div>
           <div className="steps">
-            <div className="step" data-reveal data-d="1"><div className="step__n">01</div><h4>Transparent</h4><p>Real prices, published. A monthly report you can read in 60 seconds. Numbers you can verify yourself.</p></div>
+            <div className="step" data-reveal data-d="1"><div className="step__n">01</div><h4>Transparent</h4><p>Straight talk on cost — no hidden fees. A monthly report you can read in 60 seconds. Numbers you can verify yourself.</p></div>
             <div className="step" data-reveal data-d="2"><div className="step__n">02</div><h4>Fast</h4><p>4–6 week launches, not 4–6 months. Same-day replies. Weekly progress you can actually see.</p></div>
             <div className="step" data-reveal data-d="3"><div className="step__n">03</div><h4>Crafted</h4><p>Hand-coded, accessible, and tuned for speed and search. Work that looks effortless because the effort went where you can't see it.</p></div>
             <div className="step" data-reveal data-d="4"><div className="step__n">04</div><h4>Yours</h4><p>You keep the code, the domain, and the data — forever. We earn the relationship every month instead of locking you in.</p></div>

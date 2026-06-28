@@ -19,7 +19,7 @@ export default function HeroVisual() {
   return (
     <figure className="hero__visual hero__media" data-reveal data-d="2">
       <div className={'hero__frame hero__frame--video' + (ready ? ' is-3d-ready' : '')}>
-        <img className="hero__video" src="/img/hero-cherry.jpg" alt="" aria-hidden="true" fetchPriority="high" />
+        <img className="hero__video" src="/img/hero-cherry.jpg" alt="A glossy cherry — the Now Designs mark" fetchPriority="high" />
         {mounted && enabled && (
           <SafeBoundary>
             <Suspense fallback={null}>

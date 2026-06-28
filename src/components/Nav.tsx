@@ -14,6 +14,12 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false) }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [])
+
   const close = () => setOpen(false)
   const active = (p: string) => (pathname === p || pathname === p + '/' ? 'active' : undefined)
 

@@ -10,7 +10,7 @@ export default function HeroCanvas({ onReady }: { onReady?: () => void }) {
   useEffect(() => {
     const onScroll = () => {
       // 0 at the top, ramping to 1 across roughly the first viewport
-      scroll.current = Math.min(Math.max(window.scrollY / (window.innerHeight * 0.9), 0), 1)
+      scroll.current = Math.min(Math.max(window.scrollY / (window.innerHeight * 1.7), 0), 1)
     }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
