@@ -5,10 +5,10 @@
    ================================================================= */
 
 :root{
-  --blue:#9FC2EA; --blue-deep:#7FA9DC; --ink:#15140F; --cream:#EFEDE6;
-  --paper:#F7F5EF; --cherry:#E1452E; --cherry-deep:#C5391F; --muted:#5C594F;
+  --blue:#9FC2EA; --blue-deep:#7FA9DC; --ink:#15140F; --cream:#B3DCFF;
+  --paper:#CDE8FF; --cherry:#E1452E; --cherry-deep:#C5391F; --muted:#5C594F;
   --line:rgba(21,20,15,.14);
-  --display:'Fraunces',Georgia,serif;
+  --display:'Unbounded','Fraunces',Georgia,serif;
   --body:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,sans-serif;
   --maxw:1240px; --ease:cubic-bezier(.2,.7,.2,1);
 }
