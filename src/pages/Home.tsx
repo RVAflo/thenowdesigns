@@ -160,6 +160,18 @@ export default function Home() {
         </div>
       </section>
 
+      {/* MID-PAGE CTA — catch convinced visitors before the long scroll to contact */}
+      <section className="sec mid-cta" aria-labelledby="mid-cta-h">
+        <div className="wrap mid-cta__wrap">
+          <p id="mid-cta-h" className="mid-cta__line" data-reveal>
+            Like what you see? <em>Let's build yours next.</em>
+          </p>
+          <HashLink to="/#contact" className="btn btn--cherry btn--lg">
+            Book a free call <span className="arrow">→</span>
+          </HashLink>
+        </div>
+      </section>
+
       {/* 5 · WANT — neuro-informed design (dopamine: anticipation, then payoff) */}
       <section className="sec sec--ink neuro" id="method">
         <div className="wrap">
