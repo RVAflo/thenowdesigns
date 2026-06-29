@@ -443,3 +443,10 @@ html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-stopped { overflow: hidden; }
+
+/* keep the brand heartbeat pulse from intercepting nav clicks */
+.brand-dot,
+.live-dot::after { pointer-events: none; }
+/* the individual kinetic letters are decorative; the parent heading is the
+   interactive surface (none currently, but this future-proofs hover targets) */
+[data-kinetic] .kl { pointer-events: none; }

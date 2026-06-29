@@ -1,5 +1,6 @@
 import { Head } from 'vite-react-ssg'
 import { Link } from 'react-router-dom'
+import HashLink from '../components/HashLink'
 import PageHero from '../components/PageHero'
 import Marquee from '../components/Marquee'
 
@@ -103,7 +104,7 @@ export default function Work() {
         <div className="wrap">
           <h2 data-reveal>Your site could be <em>next.</em></h2>
           <p data-reveal data-d="1">Tell us what you're building — we'll show you exactly what we'd do, free.</p>
-          <div data-reveal data-d="2"><Link to="/#contact" className="btn btn--cherry">Book a free call <span className="arrow">→</span></Link></div>
+          <div data-reveal data-d="2"><HashLink to="/#contact" className="btn btn--cherry">Book a free call <span className="arrow">→</span></HashLink></div>
         </div>
       </section>
     </>

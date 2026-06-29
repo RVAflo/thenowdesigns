@@ -1,5 +1,6 @@
 import { Head } from 'vite-react-ssg'
 import { Link } from 'react-router-dom'
+import HashLink from '../components/HashLink'
 import KineticHeading from '../components/KineticHeading'
 import Marquee from '../components/Marquee'
 import HeroVisual from '../components/HeroVisual'
@@ -54,9 +55,9 @@ export default function Home() {
               unforgettable one — live in weeks, yours to keep.
             </p>
             <div className="hero__cta" data-reveal data-d="3">
-              <Link to="/#contact" className="btn btn--cherry btn--lg">
+              <HashLink to="/#contact" className="btn btn--cherry btn--lg">
                 Get a free teardown <span className="arrow">→</span>
-              </Link>
+              </HashLink>
               <Link to="/work/" className="hero__link">
                 see the work <span className="arrow">→</span>
               </Link>
@@ -237,9 +238,9 @@ export default function Home() {
               Start with a <em>free 5-minute teardown</em> of your current site. No pitch — just a
               diagnostic. Not a fit? We'll tell you who to call instead.
             </p>
-            <Link to="/#contact" className="btn btn--cherry btn--lg">
+            <HashLink to="/#contact" className="btn btn--cherry btn--lg">
               Get my teardown <span className="arrow">→</span>
-            </Link>
+            </HashLink>
           </div>
         </div>
       </section>
@@ -287,9 +288,9 @@ export default function Home() {
             can buy. No tiers, no games, and you own everything when it ships.
           </p>
           <div data-reveal data-d="2">
-            <Link to="/#contact" className="btn btn--cherry btn--lg">
+            <HashLink to="/#contact" className="btn btn--cherry btn--lg">
               Tell us your budget <span className="arrow">→</span>
-            </Link>
+            </HashLink>
           </div>
         </div>
       </section>

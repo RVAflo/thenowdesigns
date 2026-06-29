@@ -1,5 +1,6 @@
 import { Head } from 'vite-react-ssg'
 import { Link } from 'react-router-dom'
+import HashLink from '../components/HashLink'
 import PageHero from '../components/PageHero'
 import Marquee from '../components/Marquee'
 
@@ -41,7 +42,7 @@ export default function About() {
             <div>
               <p>The name's the whole philosophy: design for the <em>now</em>. The web your customers use today — fast, mobile-first, beautiful, and honest.</p>
               <p>Keep the roster small and you don't get handed to a junior or buried in a queue. You talk to the person building it, see real progress weekly, and own everything when it's done.</p>
-              <p style={{ marginTop: 8 }}><Link to="/#contact" className="btn btn--cherry">Start a project <span className="arrow">→</span></Link></p>
+              <p style={{ marginTop: 8 }}><HashLink to="/#contact" className="btn btn--cherry">Start a project <span className="arrow">→</span></HashLink></p>
             </div>
           </div>
         </div>
@@ -97,7 +98,7 @@ export default function About() {
         <div className="wrap">
           <h2 data-reveal>When you're ready, <em>we're here.</em></h2>
           <p data-reveal data-d="1">If your site is costing you customers, let's talk. Free, no pitch.</p>
-          <div data-reveal data-d="2"><Link to="/#contact" className="btn btn--cherry">Book a free call <span className="arrow">→</span></Link></div>
+          <div data-reveal data-d="2"><HashLink to="/#contact" className="btn btn--cherry">Book a free call <span className="arrow">→</span></HashLink></div>
         </div>
       </section>
     </>

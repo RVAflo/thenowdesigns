@@ -24,6 +24,7 @@ export default function Layout() {
           const lenis = new Lenis({ lerp: 0.075, wheelMultiplier: 0.85 })
           instance = lenis
           lenisRef.current = lenis as never
+          ;(window as unknown as { __lenis?: unknown }).__lenis = lenis
           const loop = (t: number) => {
             lenis.raf(t)
             raf = requestAnimationFrame(loop)
@@ -38,6 +39,7 @@ export default function Layout() {
       cancelled = true
       if (raf) cancelAnimationFrame(raf)
       if (instance) instance.destroy()
+      delete (window as unknown as { __lenis?: unknown }).__lenis
       lenisRef.current = null
     }
   }, [])

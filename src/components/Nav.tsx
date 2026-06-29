@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import HashLink from './HashLink'
 
 // Fixed nav: backdrop blur on scroll, mobile slide-in menu. Ports script.js behaviour.
 export default function Nav() {
@@ -33,7 +34,7 @@ export default function Nav() {
         <Link to="/services/" className={active('/services')} onClick={close}>Services</Link>
         <Link to="/work/" className={active('/work')} onClick={close}>Work</Link>
         <Link to="/about/" className={active('/about')} onClick={close}>About</Link>
-        <Link to="/#contact" className="btn btn--ink" onClick={close}>Book</Link>
+        <HashLink to="/#contact" className="btn btn--ink" onClick={close}>Book</HashLink>
       </div>
       <button
         className={'nav-toggle' + (open ? ' open' : '')}
