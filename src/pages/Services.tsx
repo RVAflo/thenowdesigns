@@ -1,5 +1,6 @@
 import { Head } from 'vite-react-ssg'
 import { Link } from 'react-router-dom'
+import HashLink from '../components/HashLink'
 import PageHero from '../components/PageHero'
 import Marquee from '../components/Marquee'
 import KineticHeading from '../components/KineticHeading'
@@ -183,7 +184,7 @@ export default function Services() {
             Most studios hide prices — that's the overhead talking. Tell us your number and we'll
             build the best site it can buy. No tiers, no games, and you own everything when it ships.
           </p>
-          <div data-reveal data-d="2"><Link to="/#contact" className="btn btn--cherry btn--lg">Tell us your budget <span className="arrow">→</span></Link></div>
+          <div data-reveal data-d="2"><HashLink to="/#contact" className="btn btn--cherry btn--lg">Tell us your budget <span className="arrow">→</span></HashLink></div>
         </div>
       </section>
 
@@ -210,7 +211,7 @@ export default function Services() {
         <div className="wrap">
           <h2 data-reveal>Tell us what you're <em>building.</em></h2>
           <p data-reveal data-d="1">We'll tell you exactly what we'd do — and what it'd cost. Free, no pitch, no pressure.</p>
-          <div data-reveal data-d="2"><Link to="/#contact" className="btn btn--cherry">Book a free call <span className="arrow">→</span></Link></div>
+          <div data-reveal data-d="2"><HashLink to="/#contact" className="btn btn--cherry">Book a free call <span className="arrow">→</span></HashLink></div>
         </div>
       </section>
     </>

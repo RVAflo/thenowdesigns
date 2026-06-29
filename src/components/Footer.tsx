@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import HashLink from './HashLink'
 
 export default function Footer() {
   const yr = new Date().getFullYear()
@@ -18,7 +19,7 @@ export default function Footer() {
             <Link to="/services/">Services</Link>
             <Link to="/about/">About</Link>
             <Link to="/work/">Work</Link>
-            <Link to="/#contact">Book</Link>
+            <HashLink to="/#contact">Book</HashLink>
           </div>
         </div>
         <a
